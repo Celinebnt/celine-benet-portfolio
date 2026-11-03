@@ -1,0 +1,613 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Journal Etam</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<script>
+/* =====================================================================
+   COQUE NAVIGATEUR - À REMPLIR ICI
+   ---------------------------------------------------------------------
+   domaine   : adresse affichée dans la barre (inventée, sans vraie marque).
+   captures  : vos pages, dans l'ordre (une page = un onglet). Pour chacune :
+     image    chemin de la capture pleine page, relatif à ce fichier
+              (PNG ou JPG, largeur 1280 à 2560 px, hauteur libre : la page
+              défile).
+     legende  titre court de l'onglet.
+     chemin   fin de l'adresse affichée (ex. '/deposer'), facultatif.
+     points   facultatif : ce que vous avez changé. x et y en % de la
+              capture (0,0 = coin haut gauche), note = une phrase courte.
+   coupe     : true = la fenêtre déborde et se fait couper par le bord droit
+               de la carte, légèrement inclinée ; false = fenêtre entière.
+   accent    : couleur des points chauds.
+   ===================================================================== */
+const CONFIG = {
+  domaine: 'etam.com',
+  captures: [
+    {
+      image: '../../images/blog-1-journal.jpg',
+      legende: 'Le Journal',
+      chemin: '/etam-journal',
+      points: [
+        { x: 50, y: 59, note: 'Des guides et conseils classés par thème, pour répondre aux questions que les clientes se posent.' }
+      ]
+    },
+    {
+      image: '../../images/blog-2-article.jpg',
+      legende: 'Choisir son soutien-gorge',
+      chemin: '/etam-journal/post?s=comment-choisir-son-soutien-gorge',
+      points: [
+        { x: 50, y: 21.5, note: 'Un fil d\'Ariane pour se repérer entre les rubriques.' },
+        { x: 27, y: 70, note: 'Une table des matières cliquable : chaque partie répond à une question précise.' }
+      ]
+    },
+    {
+      image: '../../images/blog-3-faq.jpg',
+      legende: 'Questions fréquentes',
+      chemin: '/etam-journal/post?s=comment-choisir-son-soutien-gorge#faq',
+      points: [
+        { x: 46, y: 50, note: 'Une FAQ qui reprend les questions posées aux moteurs de recherche.' }
+      ]
+    },
+    {
+      image: '../../images/blog-4-article.jpg',
+      legende: 'Lingerie invisible',
+      chemin: '/etam-journal/post?s=lingerie-invisible',
+      points: []
+    }
+  ],
+  coupe: true,
+  accent: '#C50041',
+  invitation: true
+};
+
+/* =====================================================================
+   JEUX D'EXEMPLE (facultatif, vous pouvez supprimer ce bloc)
+   Ajoutez ?jeu=annonces ou ?jeu=facturation à la fin de l'adresse pour
+   afficher ce jeu à la place des captures du CONFIG, sans copier la coque.
+   ===================================================================== */
+const JEUX = {};
+</script>
+<style>
+  :root {
+    --accent: #6a4fd8;
+    --encre: #17171f;
+    --encre-2: #6b6a76;
+    --trait: rgba(20, 20, 40, .09);
+    --titre: #eeedf2;
+    --outils: #ffffff;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; height: 100%; overflow: hidden; background: transparent; }
+  body { font-family: Inter, system-ui, -apple-system, sans-serif; -webkit-font-smoothing: antialiased; color: var(--encre); }
+
+  .scene { position: fixed; inset: 0; outline: none; user-select: none; -webkit-user-select: none; -webkit-tap-highlight-color: transparent; }
+  /* Inclinaison en 2D seulement (une rotation 3D rend le texte flou).
+     Au repos, la fenêtre coupée est posée de travers ; dès qu'on la survole
+     ou qu'on la touche, elle se redresse et revient exactement à transform: none. */
+  .fenetre-pos { position: absolute; transform-origin: 0 50%; transform: none; }
+  .scene.coupe .fenetre-pos { transform: translate(0, var(--ty, 0px)) rotate(var(--rz, 0deg)); transition: transform 420ms cubic-bezier(.34, 1.45, .64, 1); }
+  .scene.coupe.engage .fenetre-pos { transform: none; transition: transform 260ms ease; }
+  .fenetre {
+    position: absolute; inset: 0; display: flex; flex-direction: column; border-radius: 12px; overflow: hidden; background: var(--outils);
+    box-shadow:
+      0 0 0 1px rgba(20, 20, 50, .10),
+      0 1px 2px rgba(18, 18, 40, .08),
+      0 16px 32px -10px rgba(28, 26, 64, .22),
+      0 44px 80px -30px rgba(28, 26, 64, .30);
+    transform-origin: 50% 50%;
+  }
+  .scene:focus-visible .fenetre { box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 45%, transparent), 0 16px 32px -10px rgba(28, 26, 64, .22); }
+
+  /* barre de titre et onglets */
+  .barre-titre { flex: none; height: 36px; background: var(--titre); display: flex; align-items: flex-end; padding: 0 10px 0 14px; gap: 14px; }
+  .feux { display: flex; gap: 7px; align-self: center; flex: none; }
+  .feux span { width: 11px; height: 11px; border-radius: 50%; background: #d6d4dc; box-shadow: inset 0 0 0 .5px rgba(0,0,0,.08); transition: background-color .25s; }
+  .scene.survol .feux span:nth-child(1) { background: #ff5f57; }
+  .scene.survol .feux span:nth-child(2) { background: #febc2e; }
+  .scene.survol .feux span:nth-child(3) { background: #28c840; }
+  .onglets { display: flex; min-width: 0; flex: 1; gap: 2px; height: 30px; }
+  .onglet { position: relative; min-width: 0; flex: 0 1 190px; display: flex; align-items: center; gap: 7px; padding: 0 12px; border: 0; background: transparent;
+    font: 500 12px/1 Inter, system-ui, sans-serif; color: var(--encre-2); border-radius: 9px 9px 0 0; cursor: pointer; transition: background-color .2s, color .2s; }
+  .onglet:hover { background: rgba(255, 255, 255, .5); }
+  .onglet.actif { background: var(--outils); color: var(--encre); }
+  .onglet.actif::before, .onglet.actif::after { content: ""; position: absolute; bottom: 0; width: 9px; height: 9px; pointer-events: none; }
+  .onglet.actif::before { left: -9px; background: radial-gradient(circle at 0 0, transparent 9px, var(--outils) 9.5px); }
+  .onglet.actif::after { right: -9px; background: radial-gradient(circle at 100% 0, transparent 9px, var(--outils) 9.5px); }
+  .onglet + .onglet:not(.actif):not(.suit-actif)::after { content: ""; position: absolute; left: -1px; top: 9px; bottom: 9px; width: 1px; background: rgba(20,20,40,.14); }
+  .onglet .ico { flex: none; width: 14px; height: 14px; border-radius: 4px; background: var(--accent); color: #fff; font-size: 9px; font-weight: 600; display: grid; place-items: center; line-height: 1; }
+  .onglet .nom { overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+
+  .barre-outils { flex: none; height: 38px; display: flex; align-items: center; gap: 4px; padding: 0 10px; border-bottom: 1px solid var(--trait); position: relative; }
+  .nav { width: 26px; height: 26px; border: 0; background: transparent; border-radius: 7px; display: grid; place-items: center; color: #55545f; cursor: pointer; padding: 0; transition: background-color .15s, opacity .2s; }
+  .nav:hover:not(:disabled) { background: #f1f0f4; }
+  .nav:disabled { opacity: .3; cursor: default; }
+  .nav svg { display: block; }
+  .adresse { flex: 1; min-width: 0; height: 26px; margin-left: 6px; border-radius: 8px; background: #f3f2f6; display: flex; align-items: center; gap: 7px; padding: 0 10px; font-size: 12.5px; color: var(--encre-2); white-space: nowrap; overflow: hidden; }
+  .adresse svg { flex: none; }
+  .adresse .dom { color: var(--encre); }
+  .adresse .ch { overflow: hidden; text-overflow: ellipsis; transition: opacity .2s; }
+  .progression { position: absolute; left: 0; bottom: -1px; height: 2px; width: 0; background: var(--accent); opacity: 0; }
+  .progression.go { animation: charge .55s cubic-bezier(.3, .7, .2, 1) forwards; }
+  @keyframes charge { 0% { width: 0; opacity: 1; } 75% { width: 100%; opacity: 1; } 100% { width: 100%; opacity: 0; } }
+
+  .vue { position: relative; flex: 1; overflow: hidden; background: #fff; touch-action: none; cursor: grab; }
+  .scene.prise .vue { cursor: grabbing; }
+  .piste { position: absolute; left: 0; top: 0; height: 100%; display: flex; }
+  .piste.anime { transition: transform 520ms cubic-bezier(.2, .8, .2, 1); }
+  .page { position: relative; height: 100%; overflow: hidden; flex: none; }
+  .contenu { position: absolute; left: 0; top: 0; width: 100%; }
+  .cadrage { position: relative; }
+  .cadrage img { display: block; width: 100%; height: auto; -webkit-user-drag: none; user-select: none; pointer-events: none; }
+  .cadrage canvas { position: absolute; left: 0; top: 0; width: 100%; height: 100%; pointer-events: none; }
+  .ascenseur { position: absolute; right: 3px; top: 3px; width: 5px; border-radius: 3px; background: rgba(20, 20, 30, .32); opacity: 0; transition: opacity .4s ease; pointer-events: none; z-index: 3; }
+  .ascenseur.visible { opacity: 1; transition-duration: .1s; }
+
+  /* points chauds */
+  .point { position: absolute; z-index: 2; width: 11px; height: 11px; margin: -5.5px 0 0 -5.5px; border-radius: 50%; border: 0; padding: 0; cursor: pointer;
+    background: var(--accent); box-shadow: 0 0 0 2.5px #fff, 0 1px 6px 2px rgba(0,0,0,.18);
+    opacity: 0; transform: scale(.4); transition: opacity .3s ease, transform .45s cubic-bezier(.3, 1.6, .5, 1); }
+  .point::before { content: ""; position: absolute; inset: -10px; border-radius: 50%; }
+  .point::after { content: ""; position: absolute; inset: -2.5px; border-radius: 50%; border: 1.5px solid var(--accent); opacity: 0; }
+  .scene.survol .point, .scene.tactile .point, .point:focus-visible { opacity: 1; transform: scale(1); }
+  .scene.survol .point::after, .scene.tactile .point::after { animation: onde 2.2s ease-out infinite; }
+  .point:focus-visible { outline: none; }
+  @keyframes onde { 0% { transform: scale(1); opacity: .7; } 70%, 100% { transform: scale(2.4); opacity: 0; } }
+
+  .bulle { position: fixed; z-index: 20; left: 0; top: 0; max-width: 240px; padding: 9px 12px; border-radius: 10px;
+    background: #fff; color: var(--encre); font-size: 12.5px; line-height: 1.4; font-weight: 500;
+    box-shadow: 0 0 0 1px rgba(20, 20, 40, .06), 0 8px 24px -6px rgba(20, 20, 50, .22);
+    opacity: 0; transform: translateY(4px) scale(.98); transition: opacity .18s ease, transform .22s ease; pointer-events: none; }
+  .bulle.visible { opacity: 1; transform: none; }
+  .bulle::after { content: ""; position: absolute; left: var(--ax, 50%); width: 10px; height: 10px; margin-left: -5px; background: #fff; transform: rotate(45deg); }
+  .bulle.dessus::after { bottom: -5px; box-shadow: 1px 1px 0 rgba(20,20,40,.06); }
+  .bulle.dessous::after { top: -5px; box-shadow: -1px -1px 0 rgba(20,20,40,.06); }
+
+  /* petites tailles */
+  .compact .barre-titre { height: 30px; padding: 0 8px 0 11px; gap: 10px; }
+  .compact .feux { gap: 5px; }
+  .compact .feux span { width: 9px; height: 9px; }
+  .compact .onglets { height: 25px; }
+  .compact .onglet { padding: 0 9px; font-size: 11px; gap: 6px; }
+  .compact .onglet .ico { width: 12px; height: 12px; font-size: 8px; }
+  .compact .barre-outils { height: 32px; padding: 0 6px; gap: 0; }
+  .compact .nav { width: 22px; height: 22px; }
+  .compact .nav.recharger { display: none; }
+  .compact .adresse { height: 22px; font-size: 11px; padding: 0 8px; gap: 5px; margin-left: 4px; }
+  .tres-compact .onglet .ico { display: none; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .scene.coupe .fenetre-pos { transition-duration: 1ms; }
+    .piste.anime { transition-duration: 1ms; }
+    .point::after { animation: none !important; }
+    .progression.go { animation: none; }
+  }
+</style>
+</head>
+<body>
+<div class="scene" id="scene" tabindex="0" role="region" aria-roledescription="carrousel" aria-label="Captures du site. Faites défiler la page, changez d'onglet pour naviguer.">
+  <div class="fenetre-pos" id="pos">
+    <div class="fenetre" id="fenetre">
+      <div class="barre-titre"><div class="feux" aria-hidden="true"><span></span><span></span><span></span></div><div class="onglets" id="onglets" role="tablist"></div></div>
+      <div class="barre-outils">
+        <button class="nav" id="prec" type="button" aria-label="Page précédente"><svg width="14" height="14" viewBox="0 0 14 14"><path d="M8.8 2.8 4.6 7l4.2 4.2" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <button class="nav" id="suiv" type="button" aria-label="Page suivante"><svg width="14" height="14" viewBox="0 0 14 14"><path d="M5.2 2.8 9.4 7l-4.2 4.2" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <button class="nav recharger" id="recharger" type="button" aria-label="Revenir en haut de la page"><svg width="14" height="14" viewBox="0 0 14 14"><path d="M11.2 6.2A4.3 4.3 0 1 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M11.6 2.9v3.5H8.1" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <div class="adresse"><svg width="10" height="12" viewBox="0 0 10 12"><rect x=".75" y="5" width="8.5" height="6.25" rx="1.6" fill="currentColor" opacity=".75"/><path d="M2.7 5V3.6a2.3 2.3 0 0 1 4.6 0V5" fill="none" stroke="currentColor" stroke-width="1.3" opacity=".75"/></svg><span class="dom" id="dom"></span><span class="ch" id="chemin"></span></div>
+        <div class="progression" id="progression"></div>
+      </div>
+      <div class="vue" id="vue"><div class="piste" id="piste"></div><div class="ascenseur" id="ascenseur"></div></div>
+    </div>
+  </div>
+  <div class="bulle" id="bulle" role="tooltip"></div>
+</div>
+
+<script>
+(() => {
+  'use strict';
+  const params = new URLSearchParams(location.search);
+  const jeu = typeof JEUX !== 'undefined' && JEUX[params.get('jeu')];
+  if (jeu) Object.assign(CONFIG, jeu);
+  if (params.has('coupe')) CONFIG.coupe = params.get('coupe') !== '0';
+  if (params.has('fond')) document.body.style.background = params.get('fond');
+  const captures = CONFIG.captures.filter(c => c && c.image);
+  const N = captures.length;
+  const reduit = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const tactile = matchMedia('(hover: none)').matches;
+  document.documentElement.style.setProperty('--accent', CONFIG.accent || '#6a4fd8');
+
+  const $ = id => document.getElementById(id);
+  const scene = $('scene'), pos = $('pos'), fenetre = $('fenetre'), vue = $('vue'), piste = $('piste');
+  const bulle = $('bulle'), ascenseur = $('ascenseur'), onglets = $('onglets');
+  if (tactile) scene.classList.add('tactile');
+  const domaine = (CONFIG.domaine || 'exemple.fr').replace(/^https?:\/\//, '').replace(/\/$/, '');
+  $('dom').textContent = domaine;
+
+  const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
+  // arrondi au pixel physique : l'image reste nette, sans calque permanent
+  const px = v => Math.round(v * (devicePixelRatio || 1)) / (devicePixelRatio || 1);
+  /* Netteté : le navigateur réduit mal une grande capture (texte flou). On la
+     réduit nous-mêmes à la taille exacte en pixels de la fenêtre. */
+  async function affiner(pg) {
+    const img = pg.img, d = devicePixelRatio || 1;
+    if (!img.naturalWidth || !window.createImageBitmap || !VW) return;
+    const tw = Math.round(VW * d), th = Math.round(img.naturalHeight * tw / img.naturalWidth);
+    let cv = pg.cv;
+    if (tw >= img.naturalWidth * 0.92 || th > 16000) { if (cv) { cv.remove(); pg.cv = null; pg.cle = null; } img.style.visibility = ''; return; }
+    const cle = tw + 'x' + th;
+    if (pg.cle === cle) return;
+    pg.cle = cle;
+    try {
+      const bmp = await createImageBitmap(img, { resizeWidth: tw, resizeHeight: th, resizeQuality: 'high' });
+      if (pg.cle !== cle) return;
+      if (!cv) { cv = pg.cv = document.createElement('canvas'); cv.setAttribute('aria-hidden', 'true'); img.after(cv); }
+      cv.width = tw; cv.height = th;
+      cv.getContext('2d').drawImage(bmp, 0, 0);
+      if (bmp.close) bmp.close();
+      img.style.visibility = 'hidden';
+      caler();
+    } catch (_) { pg.cle = null; }
+  }
+  // cale chaque capture réduite sur la grille des pixels physiques
+  function caler() {
+    if (CONFIG.coupe && !scene.classList.contains('engage')) return;
+    const d = devicePixelRatio || 1;
+    pages.forEach(p => {
+      if (!p.cv) return;
+      const c = p.cal || [0, 0], r = p.cv.getBoundingClientRect();
+      const fx = r.left * d - Math.round(r.left * d), fy = r.top * d - Math.round(r.top * d);
+      if (Math.abs(fx) < 0.01 && Math.abs(fy) < 0.01) return;
+      p.cal = [c[0] - fx / d, c[1] - fy / d];
+      p.cv.style.transform = `translate(${p.cal[0].toFixed(4)}px,${p.cal[1].toFixed(4)}px)`;
+    });
+  }
+  const elastique = (x, d) => (1 - 1 / (x * 0.55 / d + 1)) * d;
+  let VW = 1, VH = 1;  // taille de la zone de page
+
+  /* ---------- défilement vertical avec inertie et rebond ---------- */
+  class Defileur {
+    constructor(el) { this.el = el; this.y = 0; this.v = 0; this.max = 0; this.mode = null; this.ech = []; }
+    rendu() { this.el.style.transform = this.y ? `translate(0,${-px(this.y)}px)` : 'none'; if (this === page().d) majAscenseur(); }
+    afficher(brut) {
+      if (brut < 0) return -elastique(-brut, VH);
+      if (brut > this.max) return this.max + elastique(brut - this.max, VH);
+      return brut;
+    }
+    debutGlisse() { this.mode = 'glisse'; this.y0 = this.y; this.ech = []; }
+    glisse(dy, t) {
+      this.y = this.afficher(this.y0 - dy);
+      this.ech.push({ t, brut: this.y0 - dy });
+      while (this.ech.length > 2 && t - this.ech[0].t > 90) this.ech.shift();
+      this.rendu();
+    }
+    finGlisse() {
+      const e = this.ech;
+      this.v = 0;
+      if (e.length > 1) { const a = e[0], b = e[e.length - 1]; if (b.t - a.t > 0) this.v = clamp((b.brut - a.brut) / (b.t - a.t), -7, 7); }
+      if (performance.now() - (e.length ? e[e.length - 1].t : 0) > 80) this.v = 0;
+      this.mode = this.horsBornes() ? 'ressort' : 'elan';
+      this.borne = this.y < 0 ? 0 : this.max;
+      reveil();
+    }
+    horsBornes() { return this.y < 0 || this.y > this.max; }
+    molette(dy) {
+      if (this.max <= 0) return false;
+      const base = this.mode === 'molette' ? this.cible : this.y;
+      if ((dy > 0 && base >= this.max - 0.5) || (dy < 0 && base <= 0.5)) return this.mode === 'molette';
+      this.cible = clamp(base + dy, 0, this.max);
+      this.mode = 'molette';
+      reveil();
+      return true;
+    }
+    invitation(amp) { this.mode = 'invite'; this.t0 = performance.now(); this.amp = Math.min(amp, this.max); reveil(); }
+    pas(dt, now) {
+      if (this.mode === 'elan') {
+        this.y += this.v * dt; this.v *= Math.pow(0.9972, dt);
+        if (this.horsBornes()) { this.mode = 'ressort'; this.borne = this.y < 0 ? 0 : this.max; }
+        else if (Math.abs(this.v) < 0.012) { this.mode = null; }
+      }
+      if (this.mode === 'ressort') {
+        const w = 0.021, K = w * w, C = 2 * w;
+        for (let h = 0; h < dt; h += 4) {
+          const st = Math.min(4, dt - h), x = this.y - this.borne;
+          this.v += (-K * x - C * this.v) * st; this.y += this.v * st;
+        }
+        if (Math.abs(this.y - this.borne) < 0.3 && Math.abs(this.v) < 0.01) { this.y = this.borne; this.v = 0; this.mode = null; }
+      } else if (this.mode === 'molette') {
+        this.y += (this.cible - this.y) * (1 - Math.exp(-dt / 70));
+        if (Math.abs(this.cible - this.y) < 0.25) { this.y = this.cible; this.mode = null; }
+      } else if (this.mode === 'invite') {
+        const p = (now - this.t0) / 1900;
+        if (p >= 1) { this.y = 0; this.mode = null; }
+        else {
+          const e = t => t < .5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+          this.y = this.amp * (p < .42 ? e(p / .42) : p < .54 ? 1 : 1 - e((p - .54) / .46));
+        }
+      }
+      this.rendu();
+      return this.mode !== null;
+    }
+    stop() { if (this.mode && this.mode !== 'glisse') { this.mode = null; if (this.horsBornes()) { this.y = clamp(this.y, 0, this.max); this.rendu(); } } }
+  }
+
+  /* ---------- construction des pages et des onglets ---------- */
+  const pages = captures.map((cap, k) => {
+    const el = document.createElement('div'); el.className = 'page';
+    const contenu = document.createElement('div'); contenu.className = 'contenu';
+    const cadrage = document.createElement('div'); cadrage.className = 'cadrage';
+    const img = new Image();
+    img.loading = 'lazy'; img.decoding = 'async'; img.alt = cap.legende || ''; img.draggable = false;
+    cadrage.appendChild(img);
+    (cap.points || []).forEach(p => {
+      const b = document.createElement('button');
+      b.className = 'point'; b.type = 'button'; b.setAttribute('aria-label', p.note || '');
+      b.dataset.note = p.note || '';
+      b.style.left = clamp(+p.x, 0, 100) + '%'; b.style.top = clamp(+p.y, 0, 100) + '%';
+      cadrage.appendChild(b);
+    });
+    contenu.appendChild(cadrage); el.appendChild(contenu); piste.appendChild(el);
+    const pg = { el, img, cap, d: new Defileur(contenu) };
+    img.addEventListener('load', () => { mesurer(pg); planifierInvitation(); affiner(pg); });
+    img.addEventListener('error', () => console.warn('Capture introuvable : ' + cap.image));
+    img.src = cap.image;
+
+    const o = document.createElement('button');
+    o.className = 'onglet'; o.type = 'button'; o.setAttribute('role', 'tab');
+    o.innerHTML = `<span class="ico">${domaine.charAt(0).toUpperCase()}</span><span class="nom"></span>`;
+    o.querySelector('.nom').textContent = cap.legende || ('Page ' + (k + 1));
+    o.title = cap.legende || '';
+    o.addEventListener('click', e => { e.stopPropagation(); allerA(k); });
+    onglets.appendChild(o);
+    return pg;
+  });
+  let i = 0, dx = 0;
+  const page = () => pages[i];
+
+  function mesurer(pg) {
+    const h = pg.img.naturalHeight ? pg.img.naturalHeight * VW / pg.img.naturalWidth : 0;
+    pg.d.max = Math.max(0, h - VH);
+    if (pg.d.y > pg.d.max) pg.d.y = pg.d.max;
+    pg.d.rendu();
+  }
+
+  /* ---------- barre de défilement discrète ---------- */
+  let ascTimer = 0;
+  function majAscenseur(montrer) {
+    const d = page().d;
+    if (d.max <= 0) { ascenseur.style.display = 'none'; return; }
+    ascenseur.style.display = '';
+    const total = d.max + VH, h = Math.max(24, (VH - 6) * VH / total);
+    const yy = clamp(d.y, 0, d.max) / d.max * (VH - 6 - h);
+    ascenseur.style.height = h.toFixed(1) + 'px';
+    ascenseur.style.transform = `translateY(${yy.toFixed(1)}px)`;
+    if (montrer !== false && d.mode && d.mode !== 'invite') {
+      ascenseur.classList.add('visible');
+      clearTimeout(ascTimer); ascTimer = setTimeout(() => ascenseur.classList.remove('visible'), 700);
+    }
+  }
+
+  /* ---------- mise en place à la taille du cadre ---------- */
+  function placer() {
+    const W = innerWidth, H = innerHeight;
+    let l, t, w, h;
+    if (CONFIG.coupe) {
+      l = Math.round(Math.max(18, W * 0.07)); t = Math.round(Math.max(22, H * 0.09));
+      w = Math.round(Math.max(W * 1.22, 420)); h = Math.round(H - t - Math.max(22, H * 0.08));
+    } else {
+      const m = Math.round(Math.max(12, Math.min(W, H) * 0.035));
+      l = m; t = m; w = W - 2 * m; h = H - 2 * m;
+    }
+    scene.classList.toggle('coupe', !!CONFIG.coupe);
+    scene.style.setProperty('--rz', reduit ? '0deg' : '-3deg');
+    scene.style.setProperty('--ty', reduit ? '0px' : Math.round(H * 0.025) + 'px');
+    Object.assign(pos.style, { left: l + 'px', top: t + 'px', width: w + 'px', height: h + 'px' });
+    fenetre.classList.toggle('compact', w < 470);
+    fenetre.classList.toggle('tres-compact', w < 360 && N > 2);
+    VW = vue.clientWidth; VH = vue.clientHeight;
+    pages.forEach(p => { p.el.style.width = VW + 'px'; });
+    piste.style.width = N * VW + 'px';
+    pages.forEach(mesurer);
+    rendrePiste(false);
+  }
+
+  function rendrePiste(anime) {
+    piste.classList.toggle('anime', !!anime);
+    const x = px(-i * VW + dx);
+    piste.style.transform = x ? `translate(${x}px,0)` : 'none';
+  }
+  function majChrome() {
+    [...onglets.children].forEach((o, k) => {
+      o.classList.toggle('actif', k === i); o.classList.toggle('suit-actif', k === i + 1);
+      o.setAttribute('aria-selected', k === i ? 'true' : 'false');
+    });
+    $('prec').disabled = i === 0; $('suiv').disabled = i === N - 1;
+    let ch = page().cap.chemin || '';
+    if (ch && ch[0] !== '/') ch = '/' + ch;
+    $('chemin').textContent = ch === '/' ? '' : ch;
+    majAscenseur(false);
+  }
+  function allerA(k) {
+    k = clamp(k, 0, N - 1);
+    cacherBulle(); annulerInvitation();
+    const change = k !== i;
+    i = k; dx = 0;
+    rendrePiste(true); majChrome();
+    if (change && !reduit) { const p = $('progression'); p.classList.remove('go'); void p.offsetWidth; p.classList.add('go'); }
+  }
+  $('prec').addEventListener('click', e => { e.stopPropagation(); allerA(i - 1); });
+  $('suiv').addEventListener('click', e => { e.stopPropagation(); allerA(i + 1); });
+  $('recharger').addEventListener('click', e => { e.stopPropagation(); annulerInvitation(); page().d.molette(-1e6); });
+
+  /* ---------- redressement : survol, toucher ou clavier ---------- */
+  let engageTimer = 0;
+  function engager(duree) {
+    clearTimeout(engageTimer);
+    scene.classList.add('engage');
+    if (duree) engageTimer = setTimeout(() => { if (!scene.classList.contains('survol') && !geste) scene.classList.remove('engage'); }, duree);
+  }
+
+  /* ---------- boucle d'animation ---------- */
+  let raf = 0, dernier = 0;
+  function reveil() { if (!raf) { dernier = performance.now(); raf = requestAnimationFrame(boucle); } }
+  function boucle(now) {
+    const dt = Math.min(34, now - dernier); dernier = now;
+    let actif = false;
+    pages.forEach(p => { if (p.d.mode && p.d.mode !== 'glisse') actif = p.d.pas(dt, now) || actif; });
+    raf = actif ? requestAnimationFrame(boucle) : 0;
+  }
+
+  /* ---------- invitation à défiler, une seule fois ---------- */
+  let invitationFaite = !CONFIG.invitation || reduit, invitationTimer = 0, visible = false, interagi = false;
+  function planifierInvitation() {
+    if (invitationFaite || interagi || !visible || invitationTimer) return;
+    invitationTimer = setTimeout(() => {
+      invitationTimer = 0;
+      if (invitationFaite || interagi) return;
+      const d = page().d;
+      if (d.max > 40) { invitationFaite = true; d.invitation(Math.min(160, VH * 0.4)); }
+    }, 1100);
+  }
+  function annulerInvitation() {
+    interagi = true; clearTimeout(invitationTimer); invitationTimer = 0;
+    pages.forEach(p => { if (p.d.mode === 'invite') p.d.stop(); });
+  }
+  new IntersectionObserver(es => { visible = es.some(e => e.isIntersecting && e.intersectionRatio > 0.5); planifierInvitation(); }, { threshold: [0, 0.5, 1] }).observe(scene);
+
+  /* ---------- bulle des points chauds ---------- */
+  let pointActif = null;
+  function montrerBulle(pt) {
+    pointActif = pt;
+    bulle.textContent = pt.dataset.note;
+    bulle.classList.remove('dessus', 'dessous');
+    const r = pt.getBoundingClientRect();
+    const bw = bulle.offsetWidth, bh = bulle.offsetHeight;
+    const cx = r.left + r.width / 2;
+    const left = clamp(cx - bw / 2, 8, innerWidth - bw - 8);
+    let top = r.top - bh - 12, cote = 'dessus';
+    if (top < 6) { top = r.bottom + 12; cote = 'dessous'; }
+    bulle.classList.add(cote);
+    bulle.style.left = left + 'px'; bulle.style.top = top + 'px';
+    bulle.style.setProperty('--ax', clamp(cx - left, 14, bw - 14) + 'px');
+    bulle.classList.add('visible');
+  }
+  function cacherBulle() { pointActif = null; bulle.classList.remove('visible'); }
+
+  /* ---------- gestes : souris et toucher ---------- */
+  let geste = null;
+  scene.addEventListener('pointerenter', e => { if (e.pointerType === 'mouse') { annulerInvitation(); scene.classList.add('survol'); engager(0); } });
+  scene.addEventListener('pointerleave', e => {
+    if (e.pointerType !== 'mouse') return;
+    scene.classList.remove('survol'); cacherBulle();
+    if (!geste) scene.classList.remove('engage');
+  });
+  scene.addEventListener('pointermove', e => {
+    /* bouton relâché sans que le relâchement nous parvienne (hors de l'iframe, menu contextuel) : fin du geste */
+    if (geste && e.pointerType === 'mouse' && e.pointerId === geste.id && !(e.buttons & 1)) { finGeste(e); return; }
+    if (e.pointerType === 'mouse' && !geste) {
+      const pt = e.target.closest && e.target.closest('.point');
+      if (pt && pt !== pointActif) montrerBulle(pt); else if (!pt && pointActif) cacherBulle();
+    }
+    if (!geste || e.pointerId !== geste.id) return;
+    const ddx = e.clientX - geste.x0, ddy = e.clientY - geste.y0;
+    if (!geste.axe) {
+      if (Math.hypot(ddx, ddy) < 5) return;
+      geste.axe = (Math.abs(ddx) > Math.abs(ddy) * 1.1 && N > 1) ? 'x' : 'y';
+      cacherBulle(); annulerInvitation();
+      scene.classList.add('prise');
+      if (geste.axe === 'y') page().d.debutGlisse(); else geste.ech = [];
+    }
+    if (geste.axe === 'y') page().d.glisse(ddy, performance.now());
+    else {
+      const max = (N - 1) * VW, brut = -i * VW + ddx;
+      const p = brut > 0 ? elastique(brut, VW) : brut < -max ? -max - elastique(-max - brut, VW) : brut;
+      dx = p + i * VW;
+      geste.ech.push({ t: performance.now(), x: ddx });
+      while (geste.ech.length > 2 && performance.now() - geste.ech[0].t > 90) geste.ech.shift();
+      rendrePiste(false);
+    }
+  });
+  scene.addEventListener('pointerdown', e => { if (e.pointerType !== 'mouse') engager(4000); });
+  scene.addEventListener('focus', () => engager(0));
+  scene.addEventListener('blur', () => { if (!scene.classList.contains('survol')) scene.classList.remove('engage'); });
+  vue.addEventListener('pointerdown', e => {
+    if (e.button !== 0) return;
+    page().d.stop();
+    geste = { id: e.pointerId, x0: e.clientX, y0: e.clientY, axe: null, cible: e.target };
+    try { scene.setPointerCapture(e.pointerId); } catch (_) {}
+  });
+  function finGeste(e) {
+    if (!geste || e.pointerId !== geste.id) return;
+    const g = geste; geste = null;
+    scene.classList.remove('prise');
+    try { scene.releasePointerCapture(e.pointerId); } catch (_) {}
+    if (e.pointerType !== 'mouse') engager(4000);
+    if (g.axe === 'y') { page().d.finGlisse(); return; }
+    if (g.axe === 'x') {
+      const s = g.ech;
+      let v = 0;
+      if (s.length > 1) v = (s[s.length - 1].x - s[0].x) / Math.max(1, s[s.length - 1].t - s[0].t);
+      let k = i;
+      if (dx < -VW * 0.18 || v < -0.35) k = i + 1; else if (dx > VW * 0.18 || v > 0.35) k = i - 1;
+      allerA(k);
+      return;
+    }
+    if (e.type === 'pointerup') {
+      const pt = g.cible && g.cible.closest && g.cible.closest('.point');
+      if (pt) { annulerInvitation(); pt === pointActif ? cacherBulle() : montrerBulle(pt); }
+      else cacherBulle();
+    }
+  }
+  scene.addEventListener('pointerup', finGeste);
+  scene.addEventListener('pointercancel', finGeste);
+  scene.addEventListener('lostpointercapture', e => { if (geste && geste.axe && e.pointerId === geste.id) finGeste(e); });
+  addEventListener('blur', () => { if (geste) finGeste({ pointerId: geste.id, type: 'blur', pointerType: 'mouse', clientX: geste.x0, clientY: geste.y0 }); });
+
+  /* molette et pavé tactile */
+  let cumulX = 0, dernierX = 0, attenteX = 0;
+  addEventListener('wheel', e => {
+    let wx = e.deltaX, wy = e.deltaY;
+    if (e.deltaMode === 1) { wx *= 16; wy *= 16; } else if (e.deltaMode === 2) { wx *= innerHeight; wy *= innerHeight; }
+    if (e.shiftKey && !wx) { wx = wy; wy = 0; }
+    annulerInvitation(); cacherBulle();
+    const now = performance.now();
+    if (Math.abs(wx) > Math.abs(wy)) {
+      if (N < 2) return;
+      e.preventDefault();
+      if (now - dernierX > 220) cumulX = 0;
+      dernierX = now; cumulX += wx;
+      if (Math.abs(cumulX) > 60 && now > attenteX) {
+        const k = clamp(i + Math.sign(cumulX), 0, N - 1);
+        attenteX = now + 600; cumulX = 0;
+        if (k !== i) allerA(k);
+      }
+      return;
+    }
+    if (page().d.molette(wy * 0.9)) e.preventDefault();
+  }, { passive: false });
+
+  /* clavier */
+  scene.addEventListener('keydown', e => {
+    const d = page().d;
+    const pas = { ArrowDown: 80, ArrowUp: -80, PageDown: VH * 0.85, PageUp: -VH * 0.85, ' ': VH * 0.85 }[e.key];
+    if (pas !== undefined) { annulerInvitation(); if (d.molette(pas)) e.preventDefault(); return; }
+    if (e.key === 'Home') { annulerInvitation(); d.molette(-1e6); e.preventDefault(); }
+    if (e.key === 'End') { annulerInvitation(); d.molette(1e6); e.preventDefault(); }
+    if (e.key === 'ArrowRight') { allerA(i + 1); e.preventDefault(); }
+    if (e.key === 'ArrowLeft') { allerA(i - 1); e.preventDefault(); }
+  });
+  scene.addEventListener('focusin', e => { if (e.target.classList.contains('point')) montrerBulle(e.target); });
+  scene.addEventListener('focusout', e => { if (e.target.classList.contains('point')) cacherBulle(); });
+
+  let resizeTimer = 0;
+  addEventListener('resize', () => { placer(); clearTimeout(resizeTimer); resizeTimer = setTimeout(() => pages.forEach(affiner), 150); });
+  pos.addEventListener('transitionend', e => { if (e.target === pos && e.propertyName === 'transform') caler(); });
+  placer();
+  majChrome();
+})();
+</script>
+</body>
+</html>

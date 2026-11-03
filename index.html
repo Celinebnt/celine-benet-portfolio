@@ -1,0 +1,1145 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Céline Benet · Senior Product Manager</title>
+<meta name="description" content="Céline Benet, Senior Product Manager e-commerce et mobile.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23C50041'/%3E%3Ctext x='50%25' y='56%25' text-anchor='middle' dominant-baseline='middle' font-family='Georgia,serif' font-size='38' fill='%23FFFCF9'%3EC.%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Inter:wght@400;500;600&family=Kanit:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+/* Valeurs : design system Thiga (thème web), reprises de l'exemple du workshop. */
+:root {
+  --cream: #FFFCF9; --sand: #F7F3EF; --black: #1A1A1A; --gray-600: #666666;
+  --red: #C50041; --tyrian: #5E0028; --russian: #1B0442; --indigo: #5818FF;
+  --lavender: #E6DEFA; --violet-light: #C4ACFF; --violet-pale: #F2F0FF; --border: #E8DEFC;
+  --rose: #FDE5ED; --rose-2: #FAE9F0;
+  --radius: 6px; --pill: 200px;
+  --shadow: 0 12px 8px 0 rgba(26, 26, 26, .05);
+  --d1: 150ms; --d2: 300ms; --d3: 600ms; --ease: cubic-bezier(.22, 1, .36, 1);
+  --gutter: 40px;
+  --fd: "Kanit", system-ui, sans-serif; --fb: "Inter", system-ui, sans-serif;
+  color-scheme: light;
+}
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; overflow-x: clip; -webkit-text-size-adjust: 100%; }
+html, body { margin: 0; }
+body { background: var(--cream); color: var(--gray-600); font: 15px/24px var(--fb); -webkit-font-smoothing: antialiased; overflow-x: clip; }
+h1, h2, h3, h4, p, ul, figure { margin: 0; padding: 0; }
+ul { list-style: none; }
+a { color: inherit; text-decoration: none; }
+button { font: inherit; cursor: pointer; }
+:focus-visible { outline: 2px solid var(--indigo); outline-offset: 2px; border-radius: 2px; }
+.wrap { max-width: 1200px; margin: 0 auto; padding: 0 var(--gutter); }
+.eyebrow { font-size: 13px; line-height: 21px; text-transform: uppercase; letter-spacing: .3ch; color: var(--gray-600); }
+.ink { color: var(--black); }
+.todo { background: #FFF6D6; color: #6B5300; border-radius: 3px; padding: 0 4px; font-size: .92em; }
+
+/* boutons et tags */
+.btn { display: inline-flex; align-items: center; gap: 12px; height: 48px; padding: 0 24px; border-radius: var(--radius); font: 400 16px/22px var(--fd); border: 1px solid transparent; white-space: nowrap; transition: background-color var(--d1), color var(--d1), border-color var(--d1); }
+.btn-primary { background: var(--red); color: var(--cream); }
+.btn-primary:hover { background: var(--tyrian); }
+.btn-secondary { border-color: var(--tyrian); color: var(--tyrian); background: transparent; }
+.btn-secondary:hover { background: var(--tyrian); color: var(--cream); }
+.btn .arr { transition: transform var(--d2) var(--ease); }
+.btn:hover .arr { transform: translateX(4px); }
+.tag { display: inline-flex; align-items: center; height: 26px; padding: 0 12px; border-radius: var(--pill); background: rgba(255,255,255,.7); color: var(--black); font-size: 12px; font-weight: 500; text-transform: uppercase; letter-spacing: .04em; }
+.text-link { font-weight: 500; color: var(--russian); border-bottom: 1px solid var(--border); padding-bottom: 2px; }
+.text-link:hover { color: var(--tyrian); border-color: currentColor; }
+
+/* en-tête */
+.site-header { position: sticky; top: 0; z-index: 50; background: rgba(255,252,249,.9); backdrop-filter: saturate(1.4) blur(14px); -webkit-backdrop-filter: saturate(1.4) blur(14px); border-bottom: 1px solid var(--border); }
+.topbar { background: var(--sand); font-size: 12px; line-height: 18px; text-transform: uppercase; letter-spacing: .14em; }
+.topbar .wrap { display: flex; justify-content: space-between; align-items: center; height: 32px; gap: 16px; }
+.dispo { display: inline-flex; align-items: center; gap: 8px; }
+.dot { width: 7px; height: 7px; border-radius: 50%; background: var(--indigo); box-shadow: 0 0 0 3px rgba(88,24,255,.14); animation: pulse 2.4s var(--ease) infinite; }
+@keyframes pulse { 50% { box-shadow: 0 0 0 6px rgba(88,24,255,.06); } }
+.nav { display: flex; align-items: center; justify-content: space-between; height: 56px; }
+.brand { font: 400 18px var(--fd); color: var(--black); white-space: nowrap; }
+.brand .role { color: var(--gray-600); font-weight: 300; margin-left: 8px; }
+.menu { display: flex; align-items: center; gap: 28px; }
+.m-link { color: var(--black); font-weight: 500; position: relative; }
+.m-link::after { content: ""; position: absolute; left: 0; right: 0; bottom: -4px; height: 1px; background: currentColor; transform: scaleX(0); transform-origin: left; transition: transform var(--d2) var(--ease); }
+.m-link:hover::after, .m-link.active::after { transform: scaleX(1); }
+
+/* haut de page */
+.hero .wrap { display: grid; grid-template-columns: 55fr 40fr; gap: 5%; align-items: center; min-height: 640px; padding-top: 48px; padding-bottom: 72px; }
+.hero h1 { font: 400 clamp(56px, 7.2vw, 104px)/.98 var(--fd); color: var(--black); margin: 20px 0 28px; letter-spacing: -.01em; }
+.hero h1 .c { color: var(--red); }
+.lead { font: 300 22px/31px var(--fd); max-width: 30ch; }
+.now { display: inline-flex; align-items: center; gap: 10px; margin-top: 28px; padding: 8px 14px 8px 10px; border: 1px solid var(--border); border-radius: var(--pill); background: #fff; font-size: 14px; color: var(--black); min-height: 40px; }
+.now b { font-weight: 500; color: var(--indigo); white-space: nowrap; }
+.now span { transition: opacity var(--d2); }
+.hero-actions { display: flex; align-items: center; gap: 28px; margin-top: 36px; flex-wrap: wrap; }
+.portrait { justify-self: end; width: 100%; max-width: 440px; position: relative; }
+.portrait .ph { aspect-ratio: 4 / 5; border-radius: var(--radius); background: var(--lavender); position: relative; overflow: hidden; }
+.portrait .ph img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.portrait .ph::after { display: none; content: "C."; position: absolute; right: 22px; top: 6px; font: 300 120px/1 var(--fd); color: rgba(94,0,40,.08); }
+.ph-cap { position: absolute; left: 16px; bottom: 14px; font-size: 12px; color: var(--russian); opacity: .7; }
+
+/* portrait : un aplat décalé qui glisse au survol, et un petit bonjour */
+.portrait .ph { position: relative; z-index: 1; }
+.portrait::before { content: ""; position: absolute; left: 18px; top: 18px; width: 100%; aspect-ratio: 4 / 5; border-radius: var(--radius); background: var(--lavender); transition: transform var(--d3) var(--ease), background-color var(--d3); }
+.portrait:hover::before { transform: translate(10px, 10px); background: var(--rose); }
+.hello { position: absolute; z-index: 2; top: 24px; left: -18px; padding: 8px 16px; border-radius: var(--pill); background: var(--red); color: var(--cream); font: 400 15px var(--fd); opacity: 0; transform: translateY(8px) rotate(-4deg); transition: opacity var(--d2), transform var(--d3) var(--ease); pointer-events: none; }
+.portrait:hover .hello { opacity: 1; transform: translateY(0) rotate(-4deg); }
+.langs-cap { margin-top: 30px; font-size: 13px; color: var(--gray-600); }
+
+/* sections */
+.section { padding: 96px 0; }
+.section.alt { background: var(--sand); }
+section[id] { scroll-margin-top: 88px; }
+.sec-eyebrow { margin-bottom: 16px; }
+.sec-title { font: 300 48px/53px var(--fd); color: var(--black); margin-bottom: 48px; max-width: 22ch; }
+.what-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px; }
+.what { border-top: 1px solid var(--black); padding-top: 20px; }
+.what-n { font: 400 15px var(--fd); color: var(--indigo); margin-bottom: 28px; }
+.what h3 { font: 400 26px/32px var(--fd); color: var(--black); margin-bottom: 12px; }
+
+/* cartes de mission */
+.cards { display: flex; flex-direction: column; gap: 36px; }
+.card { position: relative; display: grid; grid-template-columns: 1fr 1fr; min-height: 460px; border-radius: var(--radius); background: var(--t); overflow: hidden; isolation: isolate; transition: transform var(--d2) var(--ease), box-shadow var(--d2) var(--ease); }
+.card:hover { transform: translateY(-4px); box-shadow: var(--shadow); }
+.card-text { display: flex; flex-direction: column; align-items: flex-start; justify-content: center; padding: 48px 40px 48px 56px; }
+.card .tag { margin-bottom: 20px; }
+.card .eyebrow { margin-bottom: 8px; }
+.card h3 { font: 400 34px/40px var(--fd); color: var(--black); margin-bottom: 16px; max-width: 18ch; }
+.card .summary { max-width: 44ch; margin-bottom: 24px; }
+.kpis { display: flex; gap: 28px; margin-bottom: 28px; flex-wrap: wrap; }
+.kpi b { display: block; font: 400 36px/1 var(--fd); color: var(--red); }
+.kpi small { font-size: 13px; line-height: 18px; display: block; max-width: 18ch; margin-top: 6px; }
+.visual { position: relative; overflow: hidden; display: grid; place-items: center; }
+
+/* visuel du template : aplat incliné, coupé par le bord droit, en attendant les vraies captures */
+.visual .ph { position: absolute; left: 10%; top: 13%; width: 104%; height: 96%; border-radius: 10px; background: rgba(255,255,255,.55); box-shadow: inset 0 0 0 1px rgba(255,255,255,.9); transform: perspective(1600px) rotateY(-14deg) rotateZ(-3deg); transform-origin: left center; transition: transform var(--d3) var(--ease); }
+.card:hover .visual .ph { transform: perspective(1600px) rotateY(-9deg) rotateZ(-2deg); }
+.visual .ph-cap { left: 24px; top: 22px; bottom: auto; }
+.card { cursor: pointer; }
+.live-frame { display: block; }
+.live-frame iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; background: transparent; }
+.card[data-mission="m4"] { cursor: default; }
+/* Cinematch : proto cliquable tiré des maquettes Figma */
+.proto-zone { display: flex; flex-direction: column; align-items: center; gap: 14px; padding: 32px 24px; }
+.proto { position: relative; width: 250px; aspect-ratio: 390 / 844; border-radius: 34px; overflow: hidden; background: #0E0E12; box-shadow: 0 0 0 7px #1A1A1A, 0 28px 56px rgba(27,4,66,.28); transform: rotate(-3deg); transition: transform var(--d3) var(--ease); }
+.card:hover .proto { transform: rotate(-1deg) translateY(-4px); }
+.proto .scr { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity var(--d2) var(--ease); pointer-events: none; }
+.proto .scr.on { opacity: 1; }
+.proto .hot { position: absolute; border: 0; background: transparent; border-radius: 14px; padding: 0; display: none; cursor: pointer; }
+.proto .hot.on { display: block; }
+.proto .hot:focus-visible { outline: 2px solid #fff; }
+.proto .hot.pulse::after { content: ""; position: absolute; inset: 0; border-radius: inherit; box-shadow: 0 0 0 0 rgba(255,255,255,.55); animation: hot 2s var(--ease) infinite; }
+@keyframes hot { 70% { box-shadow: 0 0 0 10px rgba(255,255,255,0); } 100% { box-shadow: 0 0 0 0 rgba(255,255,255,0); } }
+.proto .swipe-card { position: absolute; left: 6.4%; top: 14.8%; width: 87.2%; height: 64%; border-radius: 22px; background-image: url(images/cinematch-3-swipe.png); background-size: 114.7% 156.25%; background-position: 50% 26.3%; display: none; touch-action: none; cursor: grab; transition: transform var(--d2) var(--ease), opacity var(--d2); }
+.proto .swipe-card.on { display: block; }
+.proto .toast { position: absolute; left: 50%; bottom: 18%; transform: translateX(-50%); background: #fff; color: var(--black); border-radius: var(--pill); padding: 8px 16px; font: 500 13px var(--fb); white-space: nowrap; opacity: 0; transition: opacity var(--d2); pointer-events: none; }
+.proto .toast.on { opacity: 1; }
+.proto-hint { font-size: 12px; color: var(--russian); opacity: .75; text-align: center; }
+.shots { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin: 4px 0 36px; }
+.shots img { width: 100%; aspect-ratio: 776 / 1400; object-fit: cover; object-position: top; border-radius: 16px; box-shadow: var(--shadow); }
+.shots figcaption { font-size: 12px; margin-top: 6px; }
+
+
+/* visuels animés sans capture : chiffres et démarche, rien d'inventé */
+.viz { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: center; padding: 48px 56px; }
+.viz-big { font: 300 clamp(72px, 9vw, 120px)/1 var(--fd); color: var(--tyrian); letter-spacing: -.02em; }
+.viz-cap { font-size: 13px; color: var(--russian); margin-top: 8px; }
+.bars { margin-top: 36px; display: flex; flex-direction: column; gap: 14px; max-width: 360px; }
+.bar-row { display: grid; grid-template-columns: 56px 1fr; align-items: center; gap: 12px; font-size: 12px; color: var(--russian); text-transform: uppercase; letter-spacing: .08em; }
+.bar-track { height: 18px; border-radius: 9px; background: rgba(255,255,255,.6); overflow: hidden; }
+.bar-fill { height: 100%; width: 0; border-radius: 9px; background: var(--tyrian); transition: width 1.2s var(--ease); }
+.bar-fill.after { background: var(--red); transition-delay: .4s; }
+.card.in .bar-fill { width: var(--w); }
+.flow { list-style: none; display: flex; flex-direction: column; gap: 0; max-width: 380px; }
+.flow li { position: relative; display: grid; grid-template-columns: 44px 1fr; gap: 16px; padding-bottom: 28px; opacity: 0; transform: translateX(-12px); transition: opacity var(--d3) var(--ease), transform var(--d3) var(--ease); }
+.flow li:nth-child(2) { transition-delay: .25s; }
+.flow li:nth-child(3) { transition-delay: .5s; }
+.card.in .flow li { opacity: 1; transform: none; }
+.flow li::before { content: ""; position: absolute; left: 21px; top: 44px; bottom: 0; width: 2px; background: linear-gradient(var(--violet-light), transparent); }
+.flow li:last-child::before { display: none; }
+.flow .n { width: 44px; height: 44px; border-radius: 50%; background: #fff; display: grid; place-items: center; font: 400 15px var(--fd); color: var(--indigo); box-shadow: 0 0 0 6px rgba(88,24,255,.08); }
+.flow li:last-child .n { background: var(--indigo); color: #fff; animation: pulse 2.4s var(--ease) infinite; }
+.flow h4 { font: 400 20px/26px var(--fd); color: var(--black); margin: 0; }
+.flow p { font-size: 13px; color: var(--russian); }
+.flow b { color: var(--red); font-weight: 600; }
+
+/* proto du menu mobile : captures du site public, même coque que Cinematch */
+.nav-proto { aspect-ratio: 776 / 1400; background: #fff; }
+.nav-proto .scrw { position: absolute; inset: 0; overflow-y: auto; overscroll-behavior: contain; scrollbar-width: none; opacity: 0; visibility: hidden; transition: opacity var(--d2) var(--ease), visibility 0s var(--d2); }
+.nav-proto .scrw::-webkit-scrollbar { display: none; }
+.nav-proto .scrw.on { opacity: 1; visibility: visible; transition: opacity var(--d2) var(--ease); }
+.nav-proto .scri { position: relative; }
+.nav-proto .scri img { display: block; width: 100%; }
+.sel-dot { position: absolute; aspect-ratio: 1; border-radius: 50%; background: #111; opacity: 0; transform: scale(.4); transition: top var(--d2) var(--ease), opacity var(--d2), transform var(--d2) var(--ease); pointer-events: none; }
+.sel-dot.on { opacity: 1; transform: scale(1); }
+
+/* page Magellan : les formats créés, redessinés et anonymisés */
+.formats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin: 8px 0 12px; }
+.fmt { background: #fff; border: 1px solid var(--border); border-radius: 10px; padding: 20px; display: flex; flex-direction: column; gap: 12px; }
+.fmt-k { font-size: 11.5px; text-transform: uppercase; letter-spacing: .2ch; color: var(--gray-600); }
+.dyk { position: relative; background: var(--violet-pale); border-radius: 10px; padding: 18px 18px 20px; overflow: hidden; }
+.dyk-badge { display: inline-flex; align-items: center; gap: 8px; font: 500 13px var(--fd); color: var(--russian); text-transform: uppercase; letter-spacing: .06em; }
+.dyk-badge svg { width: 26px; height: 26px; padding: 4px; border-radius: 50%; background: #FFE27A; }
+.dyk-n { font: 300 44px/1 var(--fd); color: var(--indigo); margin: 14px 0 4px; }
+.dyk p { font-size: 13px; line-height: 19px; color: var(--black); }
+.dyk::after { content: ""; position: absolute; right: -24px; bottom: -24px; width: 90px; height: 90px; border-radius: 50%; border: 2px dashed var(--violet-light); }
+.lvl-q { font-size: 13px; color: var(--black); }
+.lvls { display: grid; grid-template-columns: repeat(4, 1fr); gap: 4px; }
+.lvls button { border: 0; border-radius: 6px; padding: 8px 2px; font: 500 11px var(--fb); color: #fff; cursor: pointer; opacity: .55; transition: opacity var(--d2), transform var(--d2) var(--ease); }
+.lvls button[aria-pressed="true"] { opacity: 1; transform: translateY(-2px); }
+.lvl-out { min-height: 58px; font-size: 13px; line-height: 19px; color: var(--black); border-left: 3px solid var(--c, var(--red)); padding-left: 10px; transition: border-color var(--d2); }
+.qa { display: flex; flex-direction: column; gap: 8px; }
+.qa details { border-radius: 8px; background: var(--sand); padding: 10px 12px; }
+.qa summary { cursor: pointer; font: 400 14px/20px var(--fd); color: var(--black); list-style: none; display: flex; justify-content: space-between; gap: 8px; }
+.qa summary::-webkit-details-marker { display: none; }
+.qa summary::after { content: "+"; color: var(--red); transition: transform var(--d2) var(--ease); }
+.qa details[open] summary::after { transform: rotate(45deg); }
+.qa details p { font-size: 13px; line-height: 19px; margin-top: 6px; }
+.fmt-note { font-size: 12px; color: var(--gray-600); margin-bottom: 36px; }
+.engage { margin-top: 16px; padding-left: 14px; border-left: 3px solid var(--red); color: var(--black); }
+
+.what-i { width: 30px; height: 30px; fill: none; stroke: var(--red); stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; margin-bottom: 18px; transition: transform var(--d3) var(--ease); }
+.what:hover .what-i { transform: translateY(-3px) rotate(-6deg); }
+@media (hover: hover) {
+  .what > p:last-child, .ia > p:last-child { max-height: 0; opacity: 0; overflow: hidden; transition: max-height var(--d3) var(--ease), opacity var(--d2); }
+  .what:hover > p:last-child, .ia:hover > p:last-child, .what:focus-within > p:last-child { max-height: 120px; opacity: 1; }
+}
+
+/* logos des employeurs */
+.card-logo { height: 24px; width: auto; max-width: 150px; object-fit: contain; object-position: left; margin-bottom: 20px; }
+.card-logo[src*="magellan"] { height: 18px; }
+.step-logos { display: flex; align-items: center; gap: 18px; height: 34px; margin-bottom: 18px; }
+.step-logos img { height: 24px; width: auto; max-width: 140px; object-fit: contain; transition: transform var(--d2) var(--ease); }
+.step-logos img[src*="magellan"] { height: 18px; }
+.step-logos img[src*="maison123"] { height: 26px; }
+.step:hover .step-logos img { transform: translateY(-2px); }
+.logo-txt { font: 500 26px var(--fd); color: var(--black); letter-spacing: -.02em; }
+.logo-txt i { font-style: normal; color: var(--red); }
+
+/* formation gamifiée : la boucle, jouable */
+.game { position: absolute; inset: 0; display: grid; place-items: center; }
+.loop { position: absolute; width: min(320px, 82%); aspect-ratio: 1; }
+.loop-track { fill: none; stroke: rgba(255,255,255,.7); stroke-width: 10; }
+.loop-run { fill: none; stroke: var(--red); stroke-width: 10; stroke-linecap: round; stroke-dasharray: 18 82; transform-origin: center; animation: loop 6s linear infinite; }
+@keyframes loop { to { stroke-dashoffset: -100; } }
+.node { position: absolute; display: flex; flex-direction: column; align-items: center; gap: 4px; width: 120px; text-align: center; }
+.node span { width: 52px; height: 52px; border-radius: 50%; background: #fff; display: grid; place-items: center; font-size: 22px; box-shadow: 0 8px 18px rgba(94,0,40,.12); transition: transform var(--d2) var(--ease); }
+.node b { font: 400 13px/17px var(--fd); color: var(--tyrian); }
+.node.n1 { top: 8%; }
+.node.n2 { right: 2%; bottom: 16%; }
+.node.n3 { left: 2%; bottom: 16%; }
+.node.pop span { transform: scale(1.18); }
+.game-core { position: relative; z-index: 1; width: 170px; text-align: center; }
+.pts { font: 300 18px var(--fd); color: var(--tyrian); }
+.pts b { font-weight: 400; font-size: 44px; color: var(--red); }
+.gbar { height: 8px; border-radius: 4px; background: rgba(255,255,255,.8); overflow: hidden; margin: 8px 0 6px; }
+.gbar span { display: block; height: 100%; width: 0; background: var(--red); border-radius: 4px; transition: width var(--d3) var(--ease); }
+.goal { font-size: 11.5px; line-height: 16px; color: var(--russian); min-height: 32px; }
+.gbtn { height: 38px; padding: 0 14px; font-size: 13px; margin-top: 8px; }
+.game.won .goal { color: var(--red); font-weight: 600; }
+
+/* touches dessinées à la main : discrètes */
+.hand-font, .hello, .proto-hint em { font-family: "Caveat", cursive; }
+.hello { font-size: 22px; font-weight: 700; padding: 4px 16px 6px; }
+.lead .w.hand { position: relative; }
+.lead .w.hand::after { content: ""; position: absolute; left: -4%; right: -4%; bottom: -6px; height: 12px; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 14' preserveAspectRatio='none'%3E%3Cpath d='M2 9 C 20 4, 38 12, 58 7 S 96 3, 118 8' fill='none' stroke='%23C50041' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E") no-repeat center / 100% 100%; clip-path: inset(0 100% 0 0); animation: draw-in .9s var(--ease) 1.1s forwards; }
+@keyframes draw-in { to { clip-path: inset(0 0 0 0); } }
+.sec-note { font-family: "Caveat", cursive; font-size: 24px; color: var(--red); margin-left: 12px; display: inline-block; transform: rotate(-3deg); }
+
+/* carrousel des missions : on voit le bord de la suivante, flèches, compteur, points */
+.car-head { display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; }
+.car-nav { display: flex; align-items: center; gap: 12px; margin-bottom: 48px; flex: none; }
+.car-count { font: 400 16px var(--fd); color: var(--gray-600); margin-right: 8px; }
+.car-count b { font-weight: 400; color: var(--black); }
+.car-btn { width: 48px; height: 48px; border-radius: 50%; border: 1px solid var(--tyrian); background: transparent; color: var(--tyrian); font-size: 18px; transition: background var(--d1), color var(--d1), transform var(--d2) var(--ease), opacity var(--d2); }
+.car-btn:hover { background: var(--tyrian); color: var(--cream); transform: scale(1.06); }
+.car-btn:disabled { opacity: .3; pointer-events: none; }
+#missions .cards { flex-direction: row; gap: 24px; overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth; scrollbar-width: none; overscroll-behavior-x: contain; margin-right: calc(-1 * max(var(--gutter), (100vw - 1200px) / 2)); padding: 6px max(var(--gutter), calc((100vw - 1200px) / 2)) 10px 0; }
+#missions .cards::-webkit-scrollbar { display: none; }
+#missions .cards:focus-visible { outline: none; }
+#missions .card { flex: 0 0 min(1060px, 86%); scroll-snap-align: start; }
+.car-dots { display: flex; justify-content: center; gap: 8px; margin-top: 24px; }
+.car-dots button { width: 8px; height: 8px; padding: 0; border: 0; border-radius: 4px; background: var(--border); transition: width var(--d3) var(--ease), background var(--d2); }
+.car-dots button.on { width: 28px; background: var(--red); }
+@media (max-width: 760px) {
+  .car-head { flex-direction: column; align-items: flex-start; gap: 0; }
+  .car-nav { margin-bottom: 24px; }
+  #missions .card { flex-basis: 90%; }
+}
+/* le mot qui change dans l'accroche */
+.lead .w.hand { transition: opacity var(--d2) var(--ease), transform var(--d2) var(--ease); }
+.lead .w.hand.swap { opacity: 0; transform: translateY(.3em); }
+
+/* « Ce que je fais » : version dessinée à la main */
+.what { border-top: 0; padding-top: 26px; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 8' preserveAspectRatio='none'%3E%3Cpath d='M1 5 C 40 2, 80 6, 120 4 S 200 2, 240 5 S 285 3, 299 4' fill='none' stroke='%231A1A1A' stroke-width='1.6' stroke-linecap='round'/%3E%3C/svg%3E") top left / 100% 8px no-repeat; }
+.what::before { top: -2px; height: 8px; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 8' preserveAspectRatio='none'%3E%3Cpath d='M1 4 C 50 1, 90 7, 140 4 S 230 2, 299 5' fill='none' stroke='%23C50041' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E") left / 100% 100% no-repeat; }
+.what-i { stroke-width: 2; transform: rotate(-4deg); }
+.what:nth-child(even) .what-i { transform: rotate(5deg); }
+.what:hover .what-i { transform: translateY(-3px) rotate(-10deg) scale(1.08); }
+.what-n { display: inline-grid; place-items: center; width: 42px; height: 38px; margin-bottom: 20px; font: 700 24px/1 "Caveat", cursive; color: var(--red); border: 1.6px solid var(--red); border-radius: 55% 45% 52% 48% / 48% 55% 45% 52%; transform: rotate(-6deg); }
+.what:nth-child(even) .what-n { border-radius: 45% 55% 48% 52% / 55% 45% 53% 47%; transform: rotate(5deg); }
+.what:hover .what-n { transform: translateX(6px) rotate(-12deg); color: var(--red); }
+.what h3 { position: relative; display: inline; background: linear-gradient(transparent 62%, rgba(197,0,65,.14) 62%) no-repeat 0 0 / 0 100%; transition: background-size var(--d3) var(--ease); }
+.what:hover h3 { background-size: 100% 100%; }
+.what > p:last-child { margin-top: 12px; }
+@media (min-width: 981px) {
+  .what:not(:last-child)::after { content: ""; position: absolute; right: -30px; top: 58px; width: 28px; height: 22px; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 28 22'%3E%3Cpath d='M2 14 C 8 4, 16 4, 24 10 M24 10 l -6 -1 M24 10 l -2 5' fill='none' stroke='%23C50041' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / contain no-repeat; opacity: .7; }
+}
+
+/* pratiques IA : Cinematch en vedette, les autres en cartes colorées dessinées */
+.ia-grid { grid-template-columns: 1.4fr 1fr 1fr; grid-template-rows: auto auto; }
+.ia { position: relative; border: 0; background: var(--t, #fff); border-radius: 18px; padding: 26px 24px; text-align: left; rotate: var(--r, 0deg); transition: transform var(--d3) var(--ease), rotate var(--d3) var(--ease), box-shadow var(--d3) var(--ease); }
+.ia:nth-child(2) { --r: -1deg; } .ia:nth-child(3) { --r: 1.2deg; } .ia:nth-child(4) { --r: -.8deg; grid-column: 2 / 4; }
+.ia:hover { rotate: 0deg; transform: translateY(-4px); box-shadow: var(--shadow); }
+.ia .k { font: 700 20px/1 "Caveat", cursive; color: var(--red); margin-bottom: 10px; letter-spacing: 0; }
+.ia h3 { font-size: 21px; }
+.ia > p:last-child, .ia-txt > p:not(.k) { max-height: none !important; opacity: 1 !important; margin-top: 6px; }
+.ia-i { width: 30px; height: 30px; margin-bottom: 14px; fill: none; stroke: var(--tyrian); stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; transform: rotate(-5deg); }
+.ia-hero { grid-row: 1 / 3; display: grid; grid-template-columns: 1fr 1.1fr; align-items: center; gap: 8px; background: linear-gradient(150deg, #2A0A3C, var(--russian)); color: var(--lavender); overflow: hidden; cursor: pointer; padding: 32px 0 32px 30px; min-height: 380px; --r: 0deg; }
+.ia-hero h3 { color: #fff; font-size: 34px; line-height: 40px; }
+.ia-hero .k { color: #FF8FB3; }
+.ia-go { display: inline-block; margin-top: 18px; font: 700 21px "Caveat", cursive; color: #FF8FB3; transition: transform var(--d2) var(--ease); }
+.ia-hero:hover .ia-go { transform: translateX(6px); }
+.ia-phones { position: relative; height: 100%; min-height: 320px; }
+.ia-phones img { position: absolute; width: 150px; border-radius: 22px; box-shadow: 0 0 0 5px #111, 0 24px 40px rgba(0,0,0,.4); transition: transform var(--d3) var(--ease); }
+.ia-phones img:first-child { left: 8%; top: 4%; transform: rotate(-8deg); }
+.ia-phones img:last-child { left: 46%; top: 16%; transform: rotate(7deg); }
+.ia-hero:hover .ia-phones img:first-child { transform: rotate(-12deg) translateX(-8px); }
+.ia-hero:hover .ia-phones img:last-child { transform: rotate(11deg) translateX(8px); }
+@media (max-width: 980px) { .ia-grid { grid-template-columns: 1fr 1fr; } .ia-hero { grid-column: 1 / 3; grid-row: auto; } .ia:nth-child(4) { grid-column: auto; } }
+@media (max-width: 760px) { .ia-grid { grid-template-columns: 1fr; } .ia-hero { grid-column: auto; grid-template-columns: 1fr; padding-right: 30px; } .ia-phones { min-height: 280px; } }
+
+/* IA */
+.ia-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+.ia { background: #fff; border: 1px solid var(--border); border-radius: var(--radius); padding: 24px; transition: transform var(--d2) var(--ease), box-shadow var(--d2); }
+.ia:hover { transform: translateY(-3px); box-shadow: var(--shadow); }
+.ia .k { font: 400 13px var(--fd); color: var(--indigo); margin-bottom: 14px; }
+.ia h3 { font: 400 20px/26px var(--fd); color: var(--black); margin-bottom: 8px; }
+
+/* doodles du bloc IA : un par carte, tracés au survol */
+.ia-grid .ia { overflow: hidden; }
+.doodle-c { position: absolute; right: 18px; bottom: 16px; width: 92px; height: auto; fill: none; stroke: var(--red); stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; opacity: .55; transform: rotate(-4deg); pointer-events: none; transition: opacity var(--d3) var(--ease), transform var(--d3) var(--ease); }
+.doodle-c text { fill: var(--red); stroke: none; font: 700 11px "Caveat", cursive; }
+.doodle-c path, .doodle-c circle { stroke-dasharray: 400; stroke-dashoffset: 0; }
+.ia:hover .doodle-c { opacity: .95; transform: rotate(2deg) scale(1.05); }
+.ia:hover .doodle-c path, .ia:hover .doodle-c circle { animation: redraw 1.1s var(--ease); }
+@keyframes redraw { from { stroke-dashoffset: 400; } }
+.ia-hero .doodle-c { position: static; display: block; margin-top: 18px; width: 70px; }
+/* carte Cinematch : texte lisible sur fond clair */
+.ia-grid .ia-hero { color: var(--gray-600); }
+.ia-grid .ia-hero h3 { color: var(--black); }
+.ia-grid .ia-hero .k, .ia-grid .ia-hero .ia-go { color: var(--red); }
+
+/* À propos : trois cartes distinctes (engagement, outils, hors écran) */
+.about-cards { display: grid; grid-template-columns: 1fr 1.25fr 1fr; gap: 20px; margin-top: 56px; }
+.ab-card { position: relative; background: var(--t); border-radius: 18px; padding: 26px 26px 28px; rotate: var(--r, 0deg); transition: rotate var(--d3) var(--ease), transform var(--d3) var(--ease), box-shadow var(--d3); }
+.ab-card:nth-child(1) { --r: -1deg; } .ab-card:nth-child(3) { --r: 1deg; }
+.ab-card:hover { rotate: 0deg; transform: translateY(-4px); box-shadow: var(--shadow); }
+.ab-i { width: 40px; height: 40px; fill: none; stroke: var(--red); stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; transform: rotate(-6deg); margin-bottom: 12px; transition: transform var(--d3) var(--ease); }
+.ab-card:hover .ab-i { transform: rotate(4deg) scale(1.08); }
+.ab-k { font: 700 22px/1 "Caveat", cursive; color: var(--red); margin-bottom: 10px; }
+.ab-card h3 { font: 400 20px/26px var(--fd); color: var(--black); margin-bottom: 8px; }
+.ab-card > p:last-child { font-size: 14px; line-height: 21px; }
+.tool-groups p { display: grid; grid-template-columns: 92px 1fr; gap: 8px; font-size: 14px; line-height: 21px; padding: 7px 0; border-bottom: 1px dashed rgba(94,0,40,.15); }
+.tool-groups p:last-child { border-bottom: 0; }
+.tool-groups b { font-weight: 500; color: var(--black); }
+.hobbies { display: flex; flex-direction: column; gap: 10px; }
+.hobbies li { display: flex; align-items: center; gap: 10px; font: 400 18px var(--fd); color: var(--black); }
+.hobbies svg { width: 22px; height: 22px; fill: none; stroke: var(--tyrian); stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+@media (max-width: 980px) { .about-cards { grid-template-columns: 1fr; } }
+
+.cert { display: inline-flex; align-items: center; gap: 10px; margin: -28px 0 36px; padding: 8px 16px 8px 12px; border: 1.6px dashed var(--red); border-radius: 30px 10px 26px 12px / 12px 26px 10px 30px; color: var(--black); font-size: 15px; transform: rotate(-1deg); }
+.cert svg { width: 22px; height: 22px; fill: none; stroke: var(--red); stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.cert b { font-weight: 600; }
+/* illustrations : en tête des cartes IA, et un doodle par carte de mission */
+.doodle-top { position: static; display: block; width: 96px; margin: 0 0 14px -4px; opacity: .85; }
+.ia:hover .doodle-top { transform: rotate(2deg) scale(1.05); }
+.card-text { position: relative; }
+.card-doodle { position: absolute; right: 28px; bottom: 26px; width: 84px; fill: none; stroke: var(--red); stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; opacity: .5; transform: rotate(-5deg); transition: opacity var(--d3) var(--ease), transform var(--d3) var(--ease); pointer-events: none; }
+.card-doodle text { fill: var(--red); stroke: none; font: 700 15px "Caveat", cursive; }
+.card-doodle path, .card-doodle circle { stroke-dasharray: 400; }
+.card:hover .card-doodle { opacity: .9; transform: rotate(3deg) scale(1.06); }
+.card:hover .card-doodle path, .card:hover .card-doodle circle { animation: redraw 1.1s var(--ease); }
+@media (max-width: 760px) { .card-doodle { width: 64px; right: 18px; bottom: 20px; } }
+/* bloc IA : même finition que les cartes « À propos » (illustration rouge compacte, étiquette manuscrite) */
+.ia-grid .ia .doodle-top { width: 64px; margin: 0 0 12px -2px; opacity: 1; stroke-width: 2; transform: rotate(-6deg); }
+.ia-grid .ia:nth-child(3) .doodle-top { width: 78px; transform: rotate(4deg); }
+.ia-grid .ia:hover .doodle-top { transform: rotate(4deg) scale(1.08); }
+.ia-grid .ia .k { font: 700 22px/1 "Caveat", cursive; color: var(--red); letter-spacing: 0; text-transform: none; margin-bottom: 10px; }
+.ia-grid .ia h3 { font: 400 21px/27px var(--fd); color: var(--black); }
+/* page mission : l'illustration de la mission, et des étiquettes manuscrites */
+.m-top .card-doodle { right: 90px; bottom: 34px; width: 170px; opacity: .9; stroke-width: 1.6; transform: rotate(-6deg); }
+.m-top .card-doodle path, .m-top .card-doodle circle { animation: redraw 1.4s var(--ease) .2s both; }
+.m-top h2, .m-top .lead { position: relative; z-index: 1; max-width: 60%; }
+.stp .k { font: 700 20px/1 "Caveat", cursive; color: var(--red); }
+@media (max-width: 760px) { .m-top .card-doodle { width: 90px; right: 24px; bottom: 18px; opacity: .5; } .m-top h2, .m-top .lead { max-width: none; } }
+.what-n { display: grid; }
+.what h3 { display: block; width: fit-content; }
+/* cartes de mission : même structure, une touche dessinée propre à chacune */
+.hl { background: linear-gradient(transparent 58%, var(--hlc, rgba(197,0,65,.18)) 58%) no-repeat 0 0 / 0 100%; color: inherit; padding: 0 2px; transition: background-size 1s var(--ease) .4s; }
+.card.in .hl { background-size: 100% 100%; }
+.card:nth-child(even) .hl { --hlc: rgba(88,24,255,.16); }
+.anno { position: absolute; z-index: 3; right: -34px; top: 38%; display: flex; flex-direction: column; align-items: flex-end; font: 700 21px/1.1 "Caveat", cursive; color: var(--red); text-align: right; max-width: 130px; transform: rotate(-4deg); pointer-events: none; }
+.card h3 { max-width: 15ch; }
+.card .kpis { max-width: calc(100% - 110px); }
+.anno svg { width: 86px; height: 30px; margin-top: 4px; overflow: visible; }
+.anno path { fill: none; stroke: var(--red); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 200; stroke-dashoffset: 200; transition: stroke-dashoffset 1s var(--ease) .8s; }
+.card.in .anno path { stroke-dashoffset: 0; }
+.anno-1 { top: 22%; transform: rotate(3deg); }
+.anno-2 { top: 54%; transform: rotate(-2deg); }
+.card:hover .anno { transform: rotate(0deg) translateX(4px); transition: transform var(--d3) var(--ease); }
+.k-circle .kpi:first-child b::before { content: ""; position: absolute; left: -14px; top: -10px; right: -16px; bottom: -12px; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 60' preserveAspectRatio='none'%3E%3Cpath d='M60 4 C 100 2, 118 18, 114 32 C 110 50, 70 58, 40 54 C 10 50, 2 36, 8 22 C 14 8, 40 2, 72 6' fill='none' stroke='%23C50041' stroke-width='2.2' stroke-linecap='round'/%3E%3C/svg%3E") center / 100% 100% no-repeat; clip-path: inset(0 100% 0 0); transition: clip-path 1s var(--ease) .5s; }
+.card.in .k-circle .kpi:first-child b::before { clip-path: inset(0 0 0 0); }
+.k-under .kpi b { padding-bottom: 6px; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 14' preserveAspectRatio='none'%3E%3Cpath d='M2 6 C 30 2, 60 10, 118 5 M8 12 C 40 8, 80 12, 112 10' fill='none' stroke='%23C50041' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E") left bottom / 0 10px no-repeat; transition: background-size 1s var(--ease) .5s; }
+.card.in .k-under .kpi b { background-size: 100% 10px; }
+@media (max-width: 760px) { .anno { position: static; align-items: flex-start; text-align: left; margin: 12px 0 0; order: 9; } .anno svg { display: none; } }
+/* menu : soulignement tracé à la main, discret */
+.m-link::after { bottom: -9px; height: 7px; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 8' preserveAspectRatio='none'%3E%3Cpath d='M2 5 C 25 2, 50 7, 75 4 S 95 3, 98 5' fill='none' stroke='%231A1A1A' stroke-width='1.6' stroke-linecap='round'/%3E%3C/svg%3E") center / 100% 100% no-repeat; }
+.m-link { transition: color var(--d2) var(--ease); }
+.m-link:hover, .m-link.active { color: var(--red); }
+.m-link:hover::after, .m-link.active::after { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 8' preserveAspectRatio='none'%3E%3Cpath d='M2 5 C 25 2, 50 7, 75 4 S 95 3, 98 5' fill='none' stroke='%23C50041' stroke-width='2.2' stroke-linecap='round'/%3E%3C/svg%3E"); }
+/* parcours */
+.timeline { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
+.step { border-top: 1px solid var(--black); padding-top: 20px; }
+.step .when { font: 400 15px var(--fd); color: var(--indigo); margin-bottom: 18px; }
+.step h3 { font: 400 24px/30px var(--fd); color: var(--black); }
+.step .where { color: var(--black); margin: 4px 0 10px; font-weight: 500; }
+.edu { margin-top: 48px; display: flex; gap: 32px; flex-wrap: wrap; font-size: 14px; }
+.edu b { color: var(--black); font-weight: 500; }
+
+/* à propos */
+.about { display: grid; grid-template-columns: 1fr 1fr; gap: 8%; align-items: start; }
+.devise { font: 300 44px/52px var(--fd); color: var(--black); margin-top: 8px; }
+.about-text { padding-top: 37px; }
+.about-text p + p { margin-top: 16px; }
+.tools { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 28px; }
+.tools .tag { background: #fff; border: 1px solid var(--border); }
+.offscreen { margin-top: 28px; padding-top: 20px; border-top: 1px solid var(--border); }
+.offscreen .row-i { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 10px; }
+.offscreen .row-i span { padding: 6px 14px; border-radius: var(--pill); background: var(--rose-2); color: var(--tyrian); font-size: 14px; }
+
+/* contact et pied de page */
+.contact { padding-bottom: 120px; }
+.contact-title { font: 300 clamp(40px, 5vw, 64px)/1.1 var(--fd); color: var(--black); max-width: 16ch; margin-bottom: 48px; }
+.contact-title em { font-style: normal; color: var(--indigo); }
+.big-mail { display: inline-flex; align-items: center; gap: 20px; font: 300 clamp(28px, 4vw, 48px)/1.2 var(--fd); color: var(--black); border-bottom: 1px solid var(--black); padding-bottom: 8px; transition: color var(--d1), border-color var(--d1); }
+.big-mail:hover { color: var(--red); border-color: var(--red); }
+.site-footer { background: var(--tyrian); color: var(--lavender); padding: 56px 0 32px; }
+.foot-main { display: flex; justify-content: space-between; align-items: flex-end; gap: 32px; flex-wrap: wrap; }
+.f-name { font: 400 24px/32px var(--fd); color: #fff; }
+.f-links { display: flex; gap: 32px; }
+.f-links a { color: #fff; font-weight: 500; }
+.foot-note { margin-top: 40px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,.18); font-size: 12px; line-height: 18px; }
+
+/* fenêtre mission */
+dialog.mission { width: min(980px, calc(100vw - 32px)); max-height: calc(100vh - 48px); border: 0; border-radius: 10px; padding: 0; background: var(--cream); color: var(--gray-600); box-shadow: 0 40px 80px rgba(27,4,66,.25); }
+dialog.mission::backdrop { background: rgba(27,4,66,.45); backdrop-filter: blur(4px); }
+dialog[open] { animation: rise var(--d3) var(--ease); }
+@keyframes rise { from { opacity: 0; transform: translateY(24px); } }
+.m-top { background: var(--t, var(--lavender)); padding: 48px 56px 40px; position: relative; }
+.m-close { position: absolute; top: 18px; right: 18px; width: 40px; height: 40px; border-radius: 50%; border: 0; background: rgba(255,255,255,.8); font-size: 20px; color: var(--black); }
+.m-top h2 { font: 400 clamp(30px, 3.6vw, 44px)/1.1 var(--fd); color: var(--black); margin: 10px 0 16px; max-width: 22ch; }
+.m-top .lead { max-width: 46ch; font-size: 19px; line-height: 28px; }
+.fiche { display: grid; grid-template-columns: repeat(5, 1fr); gap: 20px; padding: 28px 56px; border-bottom: 1px solid var(--border); }
+.fiche .eyebrow { font-size: 11.5px; margin-bottom: 4px; }
+.fiche p:last-child { color: var(--black); font-size: 14px; line-height: 21px; }
+.m-body { padding: 36px 56px 48px; }
+.m-q { font: 300 clamp(22px, 2.4vw, 30px)/1.3 var(--fd); color: var(--black); margin: 8px 0 36px; max-width: 34ch; }
+.steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin: 12px 0 40px; }
+.stp { position: relative; background: #fff; border: 1px solid var(--border); border-left: 0; border-radius: var(--radius); padding: 22px 22px 24px 26px; }
+.stp::before { content: ""; position: absolute; left: 0; top: -1px; bottom: -1px; width: 3px; border-radius: var(--radius) 0 0 var(--radius); background: var(--red); }
+.stp .k { font: 400 13px var(--fd); color: var(--indigo); }
+.stp h4 { font: 400 20px var(--fd); color: var(--black); margin: 6px 0 8px; }
+.res { display: flex; gap: 40px; flex-wrap: wrap; margin-top: 12px; }
+.res .kpi b { font-size: 48px; white-space: nowrap; }
+.next { display: block; width: 100%; text-align: left; border: 0; border-top: 1px solid var(--border); background: var(--sand); padding: 32px 56px 40px; }
+.next .eyebrow { display: block; margin-bottom: 8px; }
+.next-t { font: 300 clamp(22px, 2.6vw, 32px)/1.25 var(--fd); color: var(--black); }
+.next:hover .next-t { color: var(--red); }
+
+/* mini-animations au survol : subtiles, une par élément */
+.w { display: inline-block; animation: word-in .7s var(--ease) backwards; animation-delay: calc(var(--i, 0) * 60ms + 120ms); }
+@keyframes word-in { from { opacity: 0; transform: translateY(.35em); } }
+.kpi b { position: relative; width: max-content; }
+.kpi b::after { content: ""; position: absolute; left: 0; right: 0; bottom: -6px; height: 2px; border-radius: 1px; background: currentColor; transform: scaleX(0); transform-origin: left; transition: transform var(--d3) var(--ease); }
+.card:hover .kpi b::after, .res .kpi:hover b::after { transform: scaleX(1); }
+.kpi + .kpi b::after { transition-delay: 80ms; }
+.what { position: relative; }
+.what::before { content: ""; position: absolute; left: 0; right: 0; top: -1px; height: 2px; background: var(--red); transform: scaleX(0); transform-origin: left; transition: transform var(--d3) var(--ease); }
+.what:hover::before { transform: scaleX(1); }
+.what-n { transition: transform var(--d2) var(--ease), color var(--d2); }
+.what:hover .what-n { transform: translateX(6px); color: var(--red); }
+.portrait .ph img { transition: transform 1.2s var(--ease); }
+.portrait:hover .ph img { transform: scale(1.035); }
+.portrait:hover .text-link { border-bottom-color: transparent; background: linear-gradient(currentColor, currentColor) left bottom / 0 1px no-repeat, linear-gradient(var(--border), var(--border)) left bottom / 100% 1px no-repeat; transition: background-size var(--d3) var(--ease), color var(--d1); }
+.text-link:hover { background-size: 100% 1px, 100% 1px; border-bottom-color: transparent; }
+.ia .k, .step .when { transition: letter-spacing var(--d3) var(--ease); }
+.ia:hover .k { letter-spacing: .06em; }
+
+/* apparition au défilement */
+.reveal { opacity: 0; transform: translateY(16px); transition: opacity var(--d3) var(--ease), transform var(--d3) var(--ease); }
+.reveal.in { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+  .reveal { opacity: 1; transform: none; }
+  html { scroll-behavior: auto; }
+}
+
+/* mobile */
+@media (max-width: 980px) {
+  .what-grid, .ia-grid { grid-template-columns: 1fr 1fr; }
+  .timeline { grid-template-columns: 1fr; }
+  .fiche { grid-template-columns: repeat(2, 1fr); }
+  .steps { grid-template-columns: 1fr; }
+  .shots { grid-template-columns: repeat(2, 1fr); }
+  .formats { grid-template-columns: 1fr; }
+}
+@media (max-width: 760px) {
+  :root { --gutter: 16px; }
+  .menu .m-link { display: none; }
+  .topbar .city { display: none; }
+  .hero .wrap { grid-template-columns: 1fr; min-height: 0; gap: 40px; padding-top: 32px; }
+  .portrait { justify-self: start; max-width: 320px; }
+    .section { padding: 64px 0; }
+  .sec-title { font-size: 34px; line-height: 40px; }
+  .what-grid, .ia-grid { grid-template-columns: 1fr; }
+  .card { grid-template-columns: 1fr; }
+  .card-text { padding: 32px 24px; }
+  .card h3 { font-size: 28px; line-height: 34px; }
+  .visual { min-height: 360px; }
+  .about { grid-template-columns: 1fr; }
+  .viz { position: relative; padding: 32px 24px; }
+  .devise { font-size: 32px; line-height: 40px; }
+  .m-top, .fiche, .m-body, .next { padding-left: 24px; padding-right: 24px; }
+}
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="topbar"><div class="wrap">
+    <span class="dispo"><span class="dot"></span>Disponible pour une mission</span>
+    <span class="city">Français · English · Español</span>
+  </div></div>
+  <div class="wrap nav">
+    <a class="brand" href="#top">Céline Benet<span class="role">Senior Product Manager</span></a>
+    <nav class="menu">
+      <a class="m-link" href="#missions">Missions</a>
+      <a class="m-link" href="#ia">IA</a>
+      <a class="m-link" href="#parcours">Parcours</a>
+      <a class="m-link" href="#apropos">À propos</a>
+      <a class="btn btn-primary" style="height:40px;padding:0 18px;font-size:15px" href="#contact">Me contacter</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="wrap">
+      <div>
+        <p class="eyebrow">Senior Product Manager · Thiga</p>
+        <h1><span class="w" style="--i:0">Céline</span><br><span class="w" style="--i:1">Benet<span class="c">.</span></span></h1>
+        <p class="lead" id="lead">Des produits utiles, de la discovery à l'adoption.</p>
+        <p class="now" aria-live="polite"><b>En ce moment</b><span id="now-text">je teste Cinematch, mon app pour choisir un film à deux</span></p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#missions">Voir les missions <span class="arr">↓</span></a>
+          <a class="text-link" href="mailto:celine.benet@thiga.co">celine.benet@thiga.co</a>
+        </div>
+      </div>
+      <figure class="portrait">
+        <div class="ph"><img src="images/portrait.jpg" alt="Portrait de Céline Benet" width="880" height="1100"></div>
+        <span class="hello" aria-hidden="true">Bonjour !</span>
+        <figcaption class="langs-cap">Français · Anglais courant (C1) · Espagnol (B2)</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="section alt" id="faire">
+    <div class="wrap">
+      <p class="eyebrow sec-eyebrow">01 · Ce que je fais</p>
+      <div class="what-grid">
+        <div class="what reveal"><svg class="what-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M11 4a7 7 0 1 0 0 14 7 7 0 0 0 0-14zM21 21l-5-5"/></svg><p class="what-n">01</p><h3>Comprendre les usages</h3><p>Je pars de la donnée et des utilisateurs pour cadrer le bon problème avant de chercher une solution.</p></div>
+        <div class="what reveal"><svg class="what-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M4 12h10M4 18h6"/></svg><p class="what-n">02</p><h3>Prioriser et piloter</h3><p>OKRs, roadmap et arbitrages partagés entre les marques, le business et la tech.</p></div>
+        <div class="what reveal"><svg class="what-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12l4 4L19 6"/></svg><p class="what-n">03</p><h3>Livrer avec méthode</h3><p>Je fais travailler design et tech ensemble, des spécifications jusqu'à la mise en production.</p></div>
+        <div class="what reveal"><svg class="what-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 5.6-7 10-7 10z"/></svg><p class="what-n">04</p><h3>Faire adopter</h3><p>Conduite du changement, coaching des PMs et cadres simples que les équipes gardent.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="missions">
+    <div class="wrap car-wrap">
+      <p class="eyebrow sec-eyebrow">02 · Missions</p>
+      <div class="car-head">
+        <h2 class="sec-title">Une sélection de missions.<span class="sec-note">à tester, tout est cliquable</span></h2>
+        <div class="car-nav">
+          <p class="car-count"><b id="car-i">01</b> / <span id="car-n">07</span></p>
+          <button type="button" class="car-btn" data-dir="-1" aria-label="Mission précédente">←</button>
+          <button type="button" class="car-btn" data-dir="1" aria-label="Mission suivante">→</button>
+        </div>
+      </div>
+      <div class="cards" id="cards" tabindex="0" aria-label="Missions, faites défiler">
+
+        <article class="card reveal" style="--t:#E6DEFA" data-mission="m1">
+          <div class="card-text">
+            <span class="anno anno-0">le vrai menu, cliquable<svg viewBox="0 0 90 32" aria-hidden="true"><path d="M4 10 C 30 0, 60 6, 82 24 M82 24 l-10 -2 M82 24 l-2 -10"/></svg></span>
+            <svg class="card-doodle" viewBox="0 0 96 80" aria-hidden="true"><path d="M30 8 h30 a4 4 0 0 1 4 4 v56 a4 4 0 0 1 -4 4 h-30 a4 4 0 0 1 -4 -4 v-56 a4 4 0 0 1 4 -4z"/><path d="M33 20 h10 M33 26 h20 M33 32 h16 M33 38 h22"/><path d="M68 30 l12 -6 M68 40 h14 M68 50 l12 6"/></svg>
+            <img class="card-logo" src="images/logos/etam.svg" alt="Etam">
+            <span class="tag">E-commerce · Mobile</span>
+            <p class="eyebrow">Etam Group · 2023-2026</p>
+            <h3>Une navigation mobile qui mène plus souvent <mark class="hl">au panier</mark></h3>
+            <div class="kpis k-circle"><div class="kpi"><b data-count="20" data-prefix="+" data-suffix=" %">+20 %</b><small>sessions mobiles avec ajout au panier</small></div><div class="kpi"><b data-count="8" data-prefix="+" data-suffix=" %">+8 %</b><small>portée des pages produit</small></div></div>
+            <button class="btn btn-secondary" data-open="m1">Voir la mission <span class="arr">→</span></button>
+          </div>
+          <div class="visual"><div class="proto-zone">
+              <div class="proto nav-proto" id="nav-proto" aria-label="Prototype cliquable du menu mobile Etam"></div>
+              <p class="proto-hint">Le vrai menu mobile d'etam.com, cliquable.<br>Ouvrez le menu ☰, choisissez une rubrique et faites défiler.</p>
+            </div></div>
+        </article>
+
+        <article class="card reveal" style="--t:#FDE5ED" data-mission="m2">
+          <div class="card-text">
+            <span class="anno anno-1">mon compte, données masquées<svg viewBox="0 0 90 32" aria-hidden="true"><path d="M4 22 C 18 2, 40 0, 36 14 C 32 28, 14 22, 30 10 C 46 -2, 70 8, 84 22 M84 22 l-10 0 M84 22 l-1 -10"/></svg></span>
+            <svg class="card-doodle" viewBox="0 0 96 80" aria-hidden="true"><circle cx="30" cy="24" r="10"/><path d="M14 58 c2 -14 30 -14 32 0"/><path d="M54 14 h30 v20 h-18 l-8 7 v-7 h-4z"/><path d="M60 22 h18 M60 28 h10"/></svg>
+            <img class="card-logo" src="images/logos/etam.svg" alt="Etam">
+            <span class="tag">Web · App · Service client</span>
+            <p class="eyebrow">Etam Group · Espace client</p>
+            <h3>Un espace client qui <mark class="hl">répond</mark> avant le support</h3>
+            <div class="kpis k-under"><div class="kpi"><b data-count="39" data-prefix="−" data-suffix=" %">−39 %</b><small>de demandes au support client</small></div></div>
+            <button class="btn btn-secondary" data-open="m2">Voir la mission <span class="arr">→</span></button>
+          </div>
+          <div class="visual"><div class="proto-zone">
+              <div class="proto nav-proto" id="ec-proto" aria-label="Prototype cliquable de l'espace client Etam"></div>
+              <p class="proto-hint">Mon espace client etam.com, cliquable.<br>Ouvrez « Mes achats », « Mes favoris » ou « Mes offres ».</p>
+            </div></div>
+        </article>
+
+        <article class="card reveal" style="--t:#FFF0F2" data-mission="m5">
+          <div class="card-text">
+            <span class="anno anno-2">feuilletez le journal<svg viewBox="0 0 90 32" aria-hidden="true"><path d="M4 18 l 14 -8 12 10 14 -10 14 10 18 -4 M76 16 l-8 -5 M76 16 l-6 7"/></svg></span>
+            <svg class="card-doodle" viewBox="0 0 96 80" aria-hidden="true"><path d="M10 20 c10 -6 22 -6 32 2 c10 -8 22 -8 32 -2 v44 c-10 -6 -22 -6 -32 2 c-10 -8 -22 -8 -32 -2z"/><path d="M42 22 v44 M18 32 h16 M18 40 h14 M50 32 h16 M50 40 h12"/><path d="M80 14 l3 6 6 1 -4 4 1 6 -6 -3 -6 3 1 -6 -4 -4 6 -1z"/></svg>
+            <img class="card-logo" src="images/logos/etam.svg" alt="Etam">
+            <span class="tag">Contenu · SEO</span>
+            <p class="eyebrow">Etam Group · Journal Etam</p>
+            <h3>Un blog qui fait venir les clientes par <mark class="hl">la recherche</mark></h3>
+            <div class="kpis k-circle"><div class="kpi"><b data-count="146" data-prefix="+" data-suffix="K">+146K</b><small>sessions organiques en 1 an</small></div></div>
+            <button class="btn btn-secondary" data-open="m5">Voir la mission <span class="arr">→</span></button>
+          </div>
+          <div class="visual live-frame">
+            <iframe src="bibliotheque/coques/coque-blog.html?fond=%23FFF0F2" title="Aperçu du Journal Etam" loading="lazy"></iframe>
+          </div>
+        </article>
+
+        <article class="card reveal" style="--t:#EDE7FB" data-mission="m6">
+          <div class="card-text">
+            <span class="anno anno-0">testez le tri<svg viewBox="0 0 90 32" aria-hidden="true"><path d="M4 10 C 30 0, 60 6, 82 24 M82 24 l-10 -2 M82 24 l-2 -10"/></svg></span>
+            <svg class="card-doodle" viewBox="0 0 96 80" aria-hidden="true"><path d="M18 12 v52 M10 54 l8 10 8 -10"/><path d="M40 16 h40 M40 30 h30 M40 44 h20 M40 58 h10"/><text x="64" y="66">A/B</text></svg>
+            <img class="card-logo" src="images/logos/undiz.png" alt="Undiz">
+            <span class="tag">E-commerce · A/B test</span>
+            <p class="eyebrow">Etam Group · Undiz</p>
+            <h3>Undiz : faire remonter les <mark class="hl">bons produits</mark> en tête de liste</h3>
+            <button class="btn btn-secondary" data-open="m6">Voir la mission <span class="arr">→</span></button>
+          </div>
+          <div class="visual"><div class="proto-zone">
+              <div class="proto nav-proto" id="undiz-proto" aria-label="Prototype cliquable du tri produit Undiz"></div>
+              <p class="proto-hint">Le tri produit d'undiz.com, dont j'ai testé les règles en A/B.<br>Ouvrez « filtrer », choisissez un tri, appliquez.</p>
+            </div></div>
+        </article>
+
+        <article class="card reveal" style="--t:#F2F0FF" data-mission="m3">
+          <div class="card-text">
+            <span class="anno anno-1">3 étapes, 2 clients<svg viewBox="0 0 90 32" aria-hidden="true"><path d="M4 22 C 18 2, 40 0, 36 14 C 32 28, 14 22, 30 10 C 46 -2, 70 8, 84 22 M84 22 l-10 0 M84 22 l-1 -10"/></svg></span>
+            <svg class="card-doodle" viewBox="0 0 96 80" aria-hidden="true"><circle cx="22" cy="24" r="7"/><circle cx="50" cy="18" r="7"/><circle cx="76" cy="26" r="7"/><path d="M10 52 c2 -10 22 -10 24 0 M38 46 c2 -10 22 -10 24 0 M64 54 c2 -10 22 -10 24 0"/><path d="M28 30 l14 -6 M58 22 l12 4"/></svg>
+            <img class="card-logo" src="images/logos/magellan.png" alt="Magellan Partners">
+            <span class="tag">Conduite du changement</span>
+            <p class="eyebrow">Groupe Magellan Partners · Énergie et audit · 2021-2022</p>
+            <h3>De nouveaux outils <mark class="hl">adoptés</mark> durablement par les équipes métier</h3>
+            <div class="kpis k-under"><div class="kpi"><b data-count="80" data-prefix="~">~80</b><small>personnes formées</small></div><div class="kpi"><b data-count="147">147</b><small>utilisateurs engagés dans la communauté</small></div></div>
+            <button class="btn btn-secondary" data-open="m3">Voir la mission <span class="arr">→</span></button>
+          </div>
+          <div class="visual" aria-hidden="true"><div class="viz">
+              <ol class="flow">
+                <li><span class="n">01</span><div><h4>Écouter</h4><p>Entretiens avec une dizaine d'utilisateurs</p></div></li>
+                <li><span class="n">02</span><div><h4>Embarquer</h4><p>4 sessions de formation, <b>~80</b> personnes formées</p></div></li>
+                <li><span class="n">03</span><div><h4>Faire vivre</h4><p>Une communauté de <b>147</b> utilisateurs, « Le saviez-vous ? » chaque semaine</p></div></li>
+              </ol>
+            </div></div>
+        </article>
+
+        <article class="card reveal" style="--t:#FDE5ED" data-mission="m7">
+          <div class="card-text">
+            <span class="anno anno-2">à vous de jouer !<svg viewBox="0 0 90 32" aria-hidden="true"><path d="M4 18 l 14 -8 12 10 14 -10 14 10 18 -4 M76 16 l-8 -5 M76 16 l-6 7"/></svg></span>
+            <svg class="card-doodle" viewBox="0 0 96 80" aria-hidden="true"><circle cx="22" cy="54" r="8"/><circle cx="44" cy="58" r="8"/><path d="M27 48 l40 -36 M39 51 l38 -26"/><path d="M70 50 h16 v16 h-16z M70 50 l8 -6 8 6"/></svg>
+            <span class="tag">App mobile · Gamification</span>
+            <p class="eyebrow">Altavia Cosmic · Groupe cosmétique · 2019-2020</p>
+            <h3>Une app qui donne <mark class="hl">envie</mark> aux coiffeurs de se former</h3>
+            <button class="btn btn-secondary" data-open="m7">Voir la mission <span class="arr">→</span></button>
+          </div>
+          <div class="visual"><div class="game" id="game">
+            <svg class="loop" viewBox="0 0 320 320" aria-hidden="true">
+              <circle cx="160" cy="160" r="118" class="loop-track"/>
+              <circle cx="160" cy="160" r="118" class="loop-run" pathLength="100"/>
+            </svg>
+            <div class="node n1"><span>📚</span><b>Je me forme</b></div>
+            <div class="node n2"><span>⭐</span><b>Je gagne des points</b></div>
+            <div class="node n3"><span>🎁</span><b>Je choisis un produit</b></div>
+            <div class="game-core">
+              <p class="pts"><b id="pts">0</b> pts</p>
+              <div class="gbar"><span id="gbar"></span></div>
+              <p class="goal" id="goal">Encore 150 pts avant un produit offert</p>
+              <button type="button" class="btn btn-primary gbtn" id="gbtn">Terminer un module</button>
+            </div>
+          </div></div>
+        </article>
+
+        <article class="card reveal" style="--t:#FAE9F0" id="cinematch" data-mission="m4">
+          <div class="card-text">
+            <span class="anno anno-0">swipez l'affiche<svg viewBox="0 0 90 32" aria-hidden="true"><path d="M4 10 C 30 0, 60 6, 82 24 M82 24 l-10 -2 M82 24 l-2 -10"/></svg></span>
+            <svg class="card-doodle" viewBox="0 0 96 80" aria-hidden="true"><path d="M20 70 L14 34 h44 l-6 36z"/><path d="M14 34 c-2-10 8-14 12-8 c2-10 14-10 15-1 c4-8 16-5 15 4"/><path d="M28 34 l2 36 M42 34 l-2 36"/><path d="M72 14 l3 7 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1z"/></svg>
+            <span class="tag">Product building · IA</span>
+            <p class="eyebrow">Projet personnel · 2026</p>
+            <h3>Cinematch : choisir un film à deux en <mark class="hl">3 minutes</mark></h3>
+            <button class="btn btn-secondary" data-open="m4">Voir le projet <span class="arr">→</span></button>
+          </div>
+          <div class="visual">
+            <div class="proto-zone">
+              <div class="proto" id="proto" aria-label="Prototype cliquable de Cinematch">
+                <img class="scr on" data-s="1" src="images/cinematch-1-lancer.png" alt="Écran : lancer une partie">
+                <img class="scr" data-s="2" src="images/cinematch-2-passe.png" alt="Écran : passer le téléphone">
+                <img class="scr" data-s="3" src="images/cinematch-3-swipe.png" alt="Écran : swiper les films">
+                <img class="scr" data-s="4" src="images/cinematch-4-resultat.png" alt="Écran : résultats">
+                <button class="hot on pulse" data-on="1" data-go="2" style="left:6.4%;top:82.1%;width:87.2%;height:6.4%" aria-label="Lancer la partie"></button>
+                <button class="hot" data-on="2" data-go="3" style="left:6.4%;top:89.2%;width:87.2%;height:6.3%" aria-label="C'est parti"></button>
+                <div class="swipe-card" data-on="3" aria-hidden="true"></div>
+                <button class="hot" data-on="3" data-fling="-1" style="left:27.9%;top:83.4%;width:16.4%;height:7.6%;border-radius:50%" aria-label="Pas ce soir"></button>
+                <button class="hot" data-on="3" data-fling="1" style="left:52.6%;top:82.7%;width:19.5%;height:9%;border-radius:50%" aria-label="J'aime"></button>
+                <button class="hot" data-on="4" data-toast="1" style="left:6.4%;top:83.8%;width:87.2%;height:6.4%" aria-label="On regarde celui-là"></button>
+                <button class="hot" data-on="4" data-go="1" style="left:6.4%;top:92.1%;width:87.2%;height:6.3%" aria-label="Relancer une partie"></button>
+                <span class="toast">Bon film à vous deux !</span>
+              </div>
+              <p class="proto-hint">Prototype cliquable, tiré de mes maquettes Figma.<br>Lancez une partie, puis swipez l'affiche.</p>
+            </div>
+          </div>
+        </article>
+
+      </div>
+      <div class="car-dots" id="car-dots"></div>
+    </div>
+  </section>
+
+  <section class="section alt" id="ia">
+    <div class="wrap">
+      <p class="eyebrow sec-eyebrow">03 · Mes pratiques IA</p>
+      <h2 class="sec-title">J'apprends à builder, un projet à la fois.</h2>
+      <p class="cert"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="9" r="6"/><path d="M8.5 14 L7 22 l5-3 5 3-1.5-8"/></svg>En préparation : la certification <b>Claude Associate</b></p>
+      <div class="ia-grid">
+        <button type="button" class="ia ia-hero reveal" data-open="m4">
+          <div class="ia-txt">
+            <p class="k">Product building</p>
+            <h3>Cinematch</h3>
+            <p>Ma première app, du cadrage au premier test réel, construite avec Claude Code.</p>
+            <span class="ia-go">Voir le projet →</span><svg class="doodle-c" viewBox="0 0 90 80" aria-hidden="true"><path d="M20 70 L14 34 h44 l-6 36z"/><path d="M14 34 c-2-10 8-14 12-8 c2-10 14-10 15-1 c4-8 16-5 15 4"/><path d="M28 34 l2 36 M42 34 l-2 36"/><path d="M70 14 l3 7 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1z"/></svg>
+          </div>
+          <div class="ia-phones" aria-hidden="true">
+            <img src="images/cinematch-3-swipe.png" alt="">
+            <img src="images/cinematch-4-resultat.png" alt="">
+          </div>
+        </button>
+        <div class="ia reveal" style="--t:#E6DEFA"><svg class="doodle-c doodle-top" viewBox="0 0 90 80" aria-hidden="true"><path d="M18 12 h40 l12 12 v46 h-52z"/><path d="M58 12 v12 h12"/><path d="M28 36 h30 M28 46 h30 M28 56 h18"/><path d="M62 52 l14 -14 4 4 -14 14 -6 2z"/></svg><p class="k">Au quotidien</p><h3>Cadrer, spécifier, analyser</h3><p>Claude m'aide à préparer un cadrage, rédiger des spécifications et lire des données plus vite.</p></div>
+        <div class="ia reveal" style="--t:#FDE5ED"><svg class="doodle-c doodle-top" viewBox="0 0 110 80" aria-hidden="true"><path d="M8 14 h90 v52 h-90z" transform="rotate(-3 53 40)"/><text x="16" y="34" transform="rotate(-3 53 40)">En tant que…</text><text x="16" y="48" transform="rotate(-3 53 40)">je veux…</text><text x="16" y="62" transform="rotate(-3 53 40)">afin de…</text></svg><p class="k">Skill</p><h3>Des user stories au bon format</h3><p>Une skill qui rédige les user stories au format de l'équipe.</p></div>
+        <div class="ia reveal" style="--t:#F2F0FF"><svg class="doodle-c doodle-top" viewBox="0 0 120 80" aria-hidden="true"><circle cx="96" cy="22" r="10"/><path d="M96 4 v4 M96 36 v4 M78 22 h4 M110 22 h4 M84 10 l3 3 M105 31 l3 3 M84 34 l3-3 M105 13 l3-3"/><path d="M10 30 l5 5 9-10 M32 30 h30 M10 50 l5 5 9-10 M32 50 h36 M14 68 h8 M32 70 h24"/></svg><p class="k">Automatisation</p><h3>Ma to-do pilotée par Claude</h3><p>Une skill reliée à Slack et des tâches planifiées qui préparent ma journée.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="parcours">
+    <div class="wrap">
+      <p class="eyebrow sec-eyebrow">04 · Parcours</p>
+      <h2 class="sec-title">Du retail au conseil, puis au produit.</h2>
+      <div class="timeline">
+        <div class="step reveal"><div class="step-logos"><img src="images/logos/etam.svg" alt="Etam"><img src="images/logos/undiz.png" alt="Undiz"><img src="images/logos/maison123.png" alt="Maison 123"></div><p class="when">2023 → aujourd'hui</p><h3>Product Manager e-commerce</h3><p class="where">Etam Group</p></div>
+        <div class="step reveal"><div class="step-logos"><img src="images/logos/magellan.png" alt="Magellan Partners"></div><p class="when">2021 → 2022</p><h3>Consultante produit et adoption</h3><p class="where">Exakis Nelite, puis Magellan Partners</p></div>
+        <div class="step reveal"><div class="step-logos"><span class="logo-txt">altavia<i>.</i></span></div><p class="when">2019 → 2020</p><h3>Product Owner Assistant</h3><p class="where">Altavia Cosmic · alternance</p></div>
+      </div>
+      <div class="edu reveal">
+        <p><b>Skema Business School</b> · Master spécialisé Manager marketing data et e-commerce · 2019-2020</p>
+        <p><b>Inseec</b> · Master Marketing digital · 2010-2014</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section alt" id="apropos">
+    <div class="wrap">
+      <div class="about">
+        <div>
+          <p class="eyebrow">05 · À propos</p>
+          <p class="devise">Des produits utiles, et des équipes qui gardent la méthode.</p>
+        </div>
+        <div class="about-text">
+          <p>Product Manager Senior sur des produits e-commerce et mobile. Je m'appuie sur la donnée et la voix des utilisateurs, j'aime structurer la façon dont les équipes travaillent, et j'intègre déjà l'IA dans ma pratique.</p>
+        </div>
+      </div>
+      <div class="about-cards">
+        <div class="ab-card reveal" style="--t:#FDE5ED">
+          <svg class="ab-i" viewBox="0 0 48 48" aria-hidden="true"><path d="M24 30 C 14 22, 14 10, 24 8 C 34 10, 34 22, 24 30 Z"/><path d="M24 30 L 14 44 M24 30 L 34 44"/><path d="M17 40 l-3 4 M31 40 l3 4"/></svg>
+          <p class="ab-k">Engagement</p>
+          <h3>Une collecte contre le cancer du sein</h3>
+          <p>Chez Magellan, j'ai lancé avec WomenInMagellan une collecte pour la lutte contre le cancer du sein.</p>
+        </div>
+        <div class="ab-card reveal" style="--t:#F2F0FF">
+          <svg class="ab-i" viewBox="0 0 48 48" aria-hidden="true"><path d="M8 18 h32 v22 h-32 z"/><path d="M18 18 v-5 h12 v5"/><path d="M8 27 h32"/><path d="M22 27 v4 h4 v-4"/></svg>
+          <p class="ab-k">Ma boîte à outils</p>
+          <div class="tool-groups">
+            <p><b>Produit</b><span>Jira · Confluence · Notion · Figma</span></p>
+            <p><b>Données</b><span>Contentsquare · Google Analytics · Maze</span></p>
+            <p><b>E-commerce</b><span>Commercetools · Contentstack · Algolia</span></p>
+            <p><b>IA</b><span>Claude · Claude Code</span></p>
+          </div>
+        </div>
+        <div class="ab-card reveal" style="--t:#E6DEFA">
+          <svg class="ab-i" viewBox="0 0 48 48" aria-hidden="true"><path d="M6 30 l30 -14 c4 -2 7 1 4 4 l-26 18 -4 -6 z"/><path d="M14 34 l-4 8 M22 24 l-8 -6"/></svg>
+          <p class="ab-k">Hors écran</p>
+          <ul class="hobbies">
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 13 l18 -7 -6 15 -3 -6 z"/></svg>Voyages</li>
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20 c-4-3-6-7-6-11 3 1 5 3 6 6 1-3 3-5 6-6 0 4-2 8-6 11z"/></svg>Méditation et yoga</li>
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 a9 9 0 1 0 0 18 c1 0 2-1 1-2-1-2 0-3 2-3 h2 a4 4 0 0 0 4-4 c0-5-4-9-9-9z"/><circle cx="8" cy="10" r="1"/><circle cx="12" cy="7" r="1"/><circle cx="16" cy="10" r="1"/></svg>Créativité</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section contact" id="contact">
+    <div class="wrap">
+      <p class="eyebrow sec-eyebrow">06 · Contact</p>
+      <h2 class="contact-title">Un produit à faire avancer ? <em>Parlons-en.</em></h2>
+      <a class="big-mail" href="mailto:celine.benet@thiga.co">celine.benet@thiga.co <span>→</span></a>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="foot-main">
+      <div><p class="f-name">Céline Benet</p><p>Senior Product Manager · Thiga</p></div>
+      <div class="f-links"><a href="https://www.linkedin.com/in/celine-benet/" target="_blank" rel="noopener">LinkedIn</a><a href="mailto:celine.benet@thiga.co">celine.benet@thiga.co</a></div>
+    </div>
+    <p class="foot-note">Conçu avec Claude Code, sur le design system Thiga · Version 1, octobre 2026.</p>
+  </div>
+</footer>
+
+<dialog class="mission" id="dlg" aria-labelledby="dlg-title"><div id="dlg-inner"></div></dialog>
+
+<script>
+const MISSIONS = {
+  m1: {
+    t: "#E6DEFA", eyebrow: "Etam Group · Mode et lingerie",
+    title: "Une navigation mobile qui mène plus souvent au panier",
+    lead: "Refondre la navigation e-commerce et ses performances sur mobile, pour Etam, Undiz et Maison 123.",
+    fiche: [["Entreprise", "Etam Group"], ["Période", "Depuis janvier 2023"], ["Rôle", "Product Manager"], ["Équipe", "Squad de 6 : 2 devs front, 2 devs back, 1 QA, 1 Product Designer"], ["Outils", "Contentsquare, Google Analytics, Figma, Jira, Confluence"]],
+    q: "Comment aider les clientes mobiles à trouver plus vite le bon produit, sur trois marques à la fois ?",
+    steps: [["Comprendre", "OKRs, analyse de la donnée et du comportement utilisateur avec Contentsquare et Google Analytics."], ["Concevoir", "Parcours de navigation retravaillés avec le Product Designer, pour le web et l'app."], ["Livrer et mesurer", "Spécifications, rituels avec la squad, tests et mises en production, puis suivi des KPIs."]],
+    res: [["+20 %", "sessions mobiles avec ajout au panier"], ["+8 %", "portée des pages produit sur mobile"]],
+    shots: [["images/nav-1-page.jpg", "Une page catégorie"], ["images/nav-2-menu.jpg", "Le menu"], ["images/nav-3-lingerie.jpg", "Une rubrique"], ["images/nav-4-pret-a-porter.jpg", "Une autre rubrique"]]
+  },
+  m2: {
+    t: "#FDE5ED", eyebrow: "Etam Group · Espace client web et app",
+    title: "Un espace client qui répond avant le support",
+    lead: "Rendre l'espace client plus clair, pour que les clientes trouvent leurs réponses sans contacter le service client.",
+    fiche: [["Entreprise", "Etam Group"], ["Période", "Depuis janvier 2023"], ["Rôle", "Product Manager"], ["Équipe", "Squad produit, avec le service client"], ["Outils", "Contentsquare, Jira, Confluence"]],
+    q: "Comment faire de l'espace client le premier réflexe des clientes, avant le service client ?",
+    steps: [["Comprendre", "Analyse de la donnée et des parcours dans l'espace client (Contentsquare, Google Analytics) et des retours utilisateurs."], ["Concevoir", "Parcours retravaillés avec le Product Designer, pour le web et l'app."], ["Livrer et mesurer", "Spécifications, mises en production avec la squad, puis suivi des demandes au support."]],
+    res: [["−39 %", "de demandes au support client (Etam)"]],
+    shots: [["images/ec-1-compte.jpg", "Mon compte"], ["images/ec-2-achats.jpg", "Mes achats"], ["images/ec-3-favoris.jpg", "Mes favoris"], ["images/ec-4-offres.jpg", "Mes offres"]]
+  },
+  m5: {
+    t: "#FFF0F2", eyebrow: "Etam Group · Contenu et SEO",
+    title: "Un blog qui fait venir les clientes par la recherche",
+    lead: "Lancer le Journal Etam : des guides et conseils lingerie qui attirent un trafic organique durable.",
+    fiche: [["Entreprise", "Etam Group"], ["Période", "Depuis janvier 2023"], ["Rôle", "Product Manager"], ["Équipe", "Squad produit, avec l'équipe SEO"], ["Outils", "Google Analytics, Contentstack"]],
+    q: "Comment attirer des clientes qui cherchent un conseil, avant même qu'elles cherchent un produit ?",
+    steps: [["Comprendre", "Avec l'équipe SEO, repérer les questions que les clientes se posent avant d'acheter."], ["Concevoir", "Un journal en rubriques (guides, tendances), des articles structurés : fil d'Ariane, table des matières, FAQ."], ["Lancer et mesurer", "Lancement sur le site, puis suivi des sessions organiques dans Google Analytics."]],
+    res: [["+146K", "sessions organiques en 1 an"]],
+    link: ["https://www.etam.com/etam-journal", "Voir le Journal Etam en ligne"]
+  },
+  m6: {
+    t: "#EDE7FB", eyebrow: "Etam Group · Undiz",
+    title: "Undiz : faire remonter les bons produits en tête de liste",
+    lead: "Référente de la marque Undiz : prioriser les évolutions du site et tester les règles de tri des pages catégorie.",
+    fiche: [["Entreprise", "Etam Group, marque Undiz"], ["Période", "Depuis janvier 2023"], ["Rôle", "Product Manager, référente marque"], ["Équipe", "TMA et équipes business Undiz"], ["Outils", "Google Analytics, Jira"]],
+    q: "Comment montrer en premier les produits qui ont le plus de chances de plaire, page après page ?",
+    steps: [["Prioriser", "Un point TMA chaque semaine pour arbitrer les demandes : évolutions du site, questions produit."], ["Configurer", "Configurations produit et mise en staging avant chaque mise en ligne."], ["Tester et suivre", "A/B tests sur les règles de tri des pages catégorie, suivi des clics et du chiffre d'affaires."]],
+    res: [["A/B", "tests sur les règles de tri produit"], ["Chaque semaine", "un point TMA pour prioriser"]],
+    shots: [["images/undiz-1-page.jpg", "Une page catégorie"], ["images/undiz-2-tri.jpg", "Le tri"], ["images/undiz-3-resultat.jpg", "La liste triée"]]
+  },
+  m3: {
+    t: "#F2F0FF", eyebrow: "Groupe Magellan Partners · Énergie et audit",
+    title: "De nouveaux outils adoptés durablement par les équipes métier",
+    lead: "Faire adopter des outils digitaux aux équipes d'un acteur de l'énergie et d'un cabinet d'audit, en partant de leurs usages réels.",
+    fiche: [["Entreprise", "Exakis Nelite, puis Magellan Partners"], ["Période", "Février 2021 → décembre 2022"], ["Rôle", "Consultante produit et adoption"], ["Équipe", "En solo, avec les équipes métier des clients"], ["Outils", "Microsoft Teams, vidéos, guides, infographies"]],
+    q: "Comment faire adopter un nouvel outil par des équipes métier qui ont déjà leurs habitudes ?",
+    steps: [["Comprendre", "Entretiens avec une dizaine d'utilisateurs pour identifier leurs besoins et leurs irritants."], ["Concevoir", "Un dispositif d'onboarding : 4 sessions de formation, des guides et des vidéos tutorielles."], ["Faire vivre", "Une communauté Teams animée chaque semaine avec « Le saviez-vous ? », et des contenus ajustés selon l'engagement."]],
+    res: [["~80", "personnes formées"], ["147", "utilisateurs engagés dans la communauté"]],
+    formats: true
+  },
+  m7: {
+    t: "#FDE5ED", eyebrow: "Altavia Cosmic · Groupe cosmétique, marque professionnelle",
+    title: "Une app qui donne envie aux coiffeurs de se former",
+    lead: "Une application mobile de formation gamifiée : chaque formation terminée rapporte des points, échangeables contre des produits.",
+    fiche: [["Agence", "Altavia Cosmic"], ["Client", "Groupe cosmétique, marque professionnelle"], ["Période", "Octobre 2019 → octobre 2020"], ["Rôle", "Product Owner Assistant, en alternance"], ["Équipe", "Binôme agence, 2 interlocuteurs client, développeurs offshore"]],
+    q: "Comment donner envie de se former à des coiffeurs qui manquent de temps ?",
+    steps: [["Comprendre", "Les besoins des coiffeurs, traduits en personas et en parcours (user flows)."], ["Concevoir et livrer", "Une mécanique simple : se former rapporte des points convertibles en produits. Spécifications fonctionnelles, daily avec l'équipe offshore, point hebdomadaire avec le client."], ["Améliorer", "Des itérations après le lancement, nourries par la donnée d'usage et les retours du service client. J'ai aussi accompagné les coiffeurs par téléphone."]],
+    res: [["Lancée", "puis améliorée après lancement"], ["Usage + support", "les deux sources des itérations"]]
+  },
+  m4: {
+    t: "#FAE9F0", eyebrow: "Projet personnel · Formation PM augmenté",
+    title: "Cinematch : choisir un film à deux en 3 minutes",
+    lead: "Une web app installable pour en finir avec le « tu veux regarder quoi ? ». Chacun swipe de son côté, l'app propose un terrain d'entente.",
+    fiche: [["Contexte", "Formation PM augmenté, Thiga"], ["Période", "Octobre 2026"], ["Rôle", "PM et builder"], ["Équipe", "Moi, avec Claude Code"], ["Outils", "Claude Code, Figma, API TMDB"]],
+    q: "Comment choisir un film qui plaît vraiment aux deux, sans passer 40 minutes à scroller ?",
+    steps: [["Cadrer", "Vision, cible et principes : un écran égale une action, moins de 3 minutes, un résultat équitable pour les deux."], ["Maquetter", "Wireframes dans Figma et revue des écrans pour resserrer le MVP."], ["Construire et tester", "Web app construite avec Claude Code, premier test réel le 23 octobre, retours classés écran par écran."]],
+    res: [["MVP", "installable sur iPhone"], ["1er", "test réel et retours priorisés pour la suite"]],
+    shots: [["images/cinematch-1-lancer.png", "Lancer une partie"], ["images/cinematch-2-passe.png", "Passer le téléphone"], ["images/cinematch-3-swipe.png", "Swiper"], ["images/cinematch-4-resultat.png", "Le match"]]
+  }
+};
+
+// formats créés chez Magellan, redessinés et anonymisés (contenus génériques)
+const FORMATS = `
+  <p class="eyebrow">Les formats que j'ai créés</p>
+  <div class="formats">
+    <div class="fmt"><p class="fmt-k">Rendez-vous hebdomadaire</p>
+      <div class="dyk"><span class="dyk-badge"><svg viewBox="0 0 24 24" fill="none" stroke="#1A1A1A" stroke-width="1.6" stroke-linecap="round"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.5 10.9c.6.5 1 1.2 1 2.1h5c0-.9.4-1.6 1-2.1A6 6 0 0 0 12 3z"/></svg>Le saviez-vous ?</span>
+        <p class="dyk-n">2 clics</p><p>suffisent pour retrouver un document partagé avec l'équipe, sans passer par sa messagerie.</p></div>
+    </div>
+    <div class="fmt"><p class="fmt-k">Mini-formation interactive</p>
+      <p class="lvl-q">Quel niveau de confidentialité pour ce document ?</p>
+      <div class="lvls" role="group" aria-label="Niveaux de confidentialité">
+        <button type="button" style="background:#4CAF7A" data-c="#4CAF7A" data-t="Public : peut circuler librement, sans risque pour l'entreprise.">Public</button>
+        <button type="button" style="background:#E0A800" data-c="#E0A800" data-t="Interne : réservé aux collaborateurs, il ne sort pas de l'entreprise.">Interne</button>
+        <button type="button" style="background:#E2563B" data-c="#E2563B" data-t="Confidentiel : partagé avec quelques personnes nommées, sa fuite aurait un impact réel.">Confid.</button>
+        <button type="button" style="background:#8E1B2C" data-c="#8E1B2C" data-t="Secret : un risque majeur s'il circule. Accès très limité et tracé.">Secret</button>
+      </div>
+      <p class="lvl-out">Choisissez un niveau. Deux questions guident le choix : à qui le document est-il destiné, et quelles données contient-il ?</p>
+    </div>
+    <div class="fmt"><p class="fmt-k">Fiche pratique en questions-réponses</p>
+      <div class="qa">
+        <details open><summary>Comment reconnaître une donnée calculée ?</summary><p>Un repère dans sa description l'indique : inutile de chercher ailleurs.</p></details>
+        <details><summary>Qui contacter en cas de doute ?</summary><p>Le référent de l'outil, présenté dans la communauté.</p></details>
+        <details><summary>Où trouver les tutoriels ?</summary><p>Dans l'espace de la communauté, rangés par usage.</p></details>
+      </div>
+    </div>
+  </div>
+  <p class="fmt-note">Formats redessinés et anonymisés : les contenus d'origine restent la propriété des clients.</p>`;
+
+const dlg = document.getElementById("dlg"), inner = document.getElementById("dlg-inner");
+function openMission(id) {
+  const m = MISSIONS[id], ids = Object.keys(MISSIONS), next = ids[(ids.indexOf(id) + 1) % ids.length];
+  inner.innerHTML = `
+    <div class="m-top" style="--t:${m.t}">
+      <button class="m-close" type="button" aria-label="Fermer">×</button>
+      <p class="eyebrow">${m.eyebrow}</p>
+      <h2 id="dlg-title">${m.title}</h2>
+      <p class="lead">${m.lead}</p>
+      ${(document.querySelector(`.card[data-mission="${id}"] .card-doodle`) || {}).outerHTML || ""}
+    </div>
+    <div class="fiche">${m.fiche.map(([k, v]) => `<div><p class="eyebrow">${k}</p><p>${v}</p></div>`).join("")}</div>
+    <div class="m-body">
+      <p class="eyebrow">L'enjeu</p>
+      <p class="m-q">${m.q}</p>
+      <p class="eyebrow">Ma démarche</p>
+      <div class="steps">${m.steps.map(([k, v], i) => `<div class="stp"><p class="k">Étape 0${i + 1}</p><h4>${k}</h4><p>${v}</p></div>`).join("")}</div>
+      ${m.shots ? `<p class="eyebrow">Les écrans</p><div class="shots">${m.shots.map(([src, c]) => `<figure><img src="${src}" alt="${c}" loading="lazy"><figcaption>${c}</figcaption></figure>`).join("")}</div>` : ""}
+      ${m.link ? `<p style="margin:-8px 0 32px"><a class="text-link" href="${m.link[0]}" target="_blank" rel="noopener">${m.link[1]} →</a></p>` : ""}
+      ${m.formats ? FORMATS : ""}
+      <p class="eyebrow">Résultats</p>
+      <div class="res">${m.res.map(([b, s]) => `<div class="kpi"><b>${b}</b><small>${s}</small></div>`).join("")}</div>
+    </div>
+    <button class="next" type="button" data-next="${next}"><span class="eyebrow">Mission suivante</span><span class="next-t">${MISSIONS[next].title} →</span></button>`;
+  inner.querySelector(".m-close").addEventListener("click", () => dlg.close());
+  inner.querySelector(".next").addEventListener("click", e => openMission(e.currentTarget.dataset.next));
+  inner.querySelectorAll(".lvls button").forEach(b => b.addEventListener("click", () => {
+    inner.querySelectorAll(".lvls button").forEach(x => x.setAttribute("aria-pressed", x === b));
+    const out = inner.querySelector(".lvl-out"); out.textContent = b.dataset.t; out.style.setProperty("--c", b.dataset.c);
+  }));
+  dlg.showModal();
+  dlg.scrollTop = 0;
+}
+document.querySelectorAll("[data-open]").forEach(b => b.addEventListener("click", e => { e.stopPropagation(); openMission(b.dataset.open); }));
+// toute la carte ouvre la mission (sauf la démo Cinematch, qui reste jouable)
+document.querySelectorAll(".card[data-mission]").forEach(c => c.addEventListener("click", e => {
+  if (c.dataset.mission === "m4") return;
+  openMission(c.dataset.mission);
+}));
+dlg.addEventListener("click", e => { if (e.target === dlg) dlg.close(); });
+
+// apparition au défilement et compteurs
+const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+function countUp(el) {
+  const end = +el.dataset.count, pre = el.dataset.prefix || "", suf = el.dataset.suffix || "";
+  if (reduce) return;
+  const t0 = performance.now(), dur = 900;
+  (function tick(t) {
+    const p = Math.min(1, (t - t0) / dur), v = Math.round(end * (1 - Math.pow(1 - p, 3)));
+    el.textContent = pre + v + suf;
+    if (p < 1) requestAnimationFrame(tick);
+  })(t0);
+}
+const io = new IntersectionObserver(entries => entries.forEach(e => {
+  if (!e.isIntersecting) return;
+  e.target.classList.add("in");
+  e.target.querySelectorAll("[data-count]").forEach(countUp);
+  io.unobserve(e.target);
+}), { threshold: .15 });
+document.querySelectorAll(".reveal").forEach(el => io.observe(el));
+
+// la phrase d'accroche arrive mot par mot, une seule fois
+const lead = document.getElementById("lead");
+lead.innerHTML = lead.textContent.split(" ").map((w, i) => `<span class="w${w === "utiles," ? " hand" : ""}" style="--i:${i + 3}">${w}</span>`).join(" ");
+
+// carrousel des missions
+(() => {
+  const track = document.getElementById("cards"), cards = [...track.children], dots = document.getElementById("car-dots");
+  const iEl = document.getElementById("car-i"), prev = document.querySelector('.car-btn[data-dir="-1"]'), next = document.querySelector('.car-btn[data-dir="1"]');
+  document.getElementById("car-n").textContent = String(cards.length).padStart(2, "0");
+  dots.innerHTML = cards.map((_, i) => `<button type="button" aria-label="Mission ${i + 1}"></button>`).join("");
+  const go = i => track.scrollTo({ left: cards[Math.max(0, Math.min(cards.length - 1, i))].offsetLeft - cards[0].offsetLeft, behavior: reduce ? "auto" : "smooth" });
+  let cur = 0, raf = 0;
+  const sync = () => {
+    const x = track.scrollLeft; let best = 0;
+    cards.forEach((c, i) => { if (Math.abs(c.offsetLeft - cards[0].offsetLeft - x) < Math.abs(cards[best].offsetLeft - cards[0].offsetLeft - x)) best = i; });
+    cur = best; iEl.textContent = String(best + 1).padStart(2, "0");
+    [...dots.children].forEach((d, i) => d.classList.toggle("on", i === best));
+    prev.disabled = best === 0; next.disabled = best === cards.length - 1;
+  };
+  track.addEventListener("scroll", () => { cancelAnimationFrame(raf); raf = requestAnimationFrame(sync); });
+  document.querySelectorAll(".car-btn").forEach(b => b.addEventListener("click", () => go(cur + +b.dataset.dir)));
+  [...dots.children].forEach((d, i) => d.addEventListener("click", () => go(i)));
+  track.addEventListener("keydown", e => { if (e.key === "ArrowRight") { e.preventDefault(); go(cur + 1); } if (e.key === "ArrowLeft") { e.preventDefault(); go(cur - 1); } });
+  sync();
+})();
+
+// le mot souligné de l'accroche change toutes les 3 secondes
+(() => {
+  const w = document.querySelector(".lead .w.hand"); if (!w || reduce) return;
+  const words = ["utiles,", "e-commerce,", "mobiles,"]; let k = 0;
+  setTimeout(() => setInterval(() => {
+    w.classList.add("swap");
+    setTimeout(() => { k = (k + 1) % words.length; w.textContent = words[k]; w.classList.remove("swap"); }, 300);
+  }, 3000), 2200);
+})();
+
+// lien actif dans le menu
+const links = [...document.querySelectorAll(".m-link")];
+const spy = new IntersectionObserver(entries => entries.forEach(e => {
+  if (e.isIntersecting) links.forEach(l => l.classList.toggle("active", l.getAttribute("href") === "#" + e.target.id));
+}), { rootMargin: "-45% 0px -50% 0px" });
+["missions", "ia", "parcours", "apropos"].forEach(id => spy.observe(document.getElementById(id)));
+
+// « En ce moment »
+const NOW = ["je teste Cinematch, mon app pour choisir un film à deux", "je prépare la certification Claude Associate", "je me forme au product building avec Claude Code", "je prépare ma première mission Thiga"];
+let ni = 0; const nowEl = document.getElementById("now-text");
+if (!reduce) setInterval(() => {
+  nowEl.style.opacity = 0;
+  setTimeout(() => { ni = (ni + 1) % NOW.length; nowEl.textContent = NOW[ni]; nowEl.style.opacity = 1; }, 300);
+}, 4200);
+
+// menu mobile Etam : proto cliquable et défilable, à partir de l'enregistrement du site public
+// zones : [gauche %, haut % de la hauteur de l'écran, largeur %, hauteur %, écran cible, libellé, pulse]
+const NAV = {
+  page: { src: "images/nav-1-page.jpg", alt: "Page catégorie", hots: [[1, 15, 13, 7, "menu", "Ouvrir le menu", 1]] },
+  menu: { src: "images/nav-2-menu.jpg", alt: "Menu", hots: [[84, 7.9, 14, 4.2, "page", "Fermer le menu"], [2, 25.7, 96, 3.4, "lingerie", "Lingerie", 1], [2, 36.1, 96, 3.4, "pap", "Prêt-à-porter"], [2, 51.6, 96, 3.4, "last", "Last Chance"]] },
+  lingerie: { src: "images/nav-3-lingerie.jpg", alt: "Rubrique Lingerie", hots: [[2, 6.7, 14, 3.6, "menu", "Retour"], [84, 6.7, 14, 3.6, "page", "Fermer le menu"]] },
+  pap: { src: "images/nav-4-pret-a-porter.jpg", alt: "Rubrique Prêt-à-porter", hots: [[2, 5.65, 14, 3, "menu", "Retour"], [84, 5.65, 14, 3, "page", "Fermer le menu"]] },
+  last: { src: "images/nav-5-last-chance.jpg", alt: "Rubrique Last Chance", hots: [[2, 9.9, 14, 5.3, "menu", "Retour"], [84, 9.9, 14, 5.3, "page", "Fermer le menu"]] }
+};
+function buildProto(el, screens, first) {
+  el.innerHTML = Object.entries(screens).map(([id, sc]) =>
+    `<div class="scrw${id === first ? " on" : ""}" data-s="${id}"><div class="scri"><img src="${sc.src}" alt="${sc.alt}" loading="lazy">` +
+    sc.hots.map(([x, y, w, h, go, label, pulse]) => `<button class="hot on${pulse ? " pulse" : ""}" ${go.startsWith("sel:") ? `data-sel="${go.slice(4)}"` : `data-go="${go}"`} style="left:${x}%;top:${y}%;width:${w}%;height:${h}%" aria-label="${label}"></button>`).join("") +
+    (sc.dot ? `<span class="sel-dot" style="left:${sc.dot[0]}%;width:${sc.dot[1]}%"></span>` : "") +
+    `</div></div>`
+  ).join("");
+  el.addEventListener("click", e => {
+    e.stopPropagation();
+    const h = e.target.closest(".hot"); if (!h) return;
+    h.classList.remove("pulse");
+    if (h.dataset.sel) { const d = h.closest(".scri").querySelector(".sel-dot"); d.style.top = h.dataset.sel + "%"; d.classList.add("on"); return; }
+    el.querySelectorAll(".scrw").forEach(w => { const on = w.dataset.s === h.dataset.go; w.classList.toggle("on", on); if (on) w.scrollTop = 0; });
+  });
+}
+buildProto(document.getElementById("nav-proto"), NAV, "page");
+
+// espace client Etam : captures de mon compte, données personnelles masquées
+const EC = {
+  compte: { src: "images/ec-1-compte.jpg", alt: "Mon compte", hots: [[52, 22.7, 42, 11.2, "offres", "Mes offres en cours"], [5, 47.5, 90, 11.1, "achats", "Mes achats", 1], [5, 59.9, 43, 11.1, "favoris", "Mes favoris"]] },
+  achats: { src: "images/ec-2-achats.jpg", alt: "Mes achats", hots: [[2, 0.8, 14, 5.4, "compte", "Retour"]] },
+  favoris: { src: "images/ec-3-favoris.jpg", alt: "Mes favoris", hots: [[0, 0, 22, 1.6, "compte", "Retour"]] },
+  offres: { src: "images/ec-4-offres.jpg", alt: "Mes offres", hots: [[2, 1.3, 14, 4.4, "compte", "Retour"]] }
+};
+buildProto(document.getElementById("ec-proto"), EC, "compte");
+
+// tri produit Undiz : captures du site public
+const UNDIZ = {
+  page: { src: "images/undiz-1-page.jpg", alt: "Page catégorie Undiz", hots: [[3, 81.3, 18, 4.5, "tri", "Filtrer", 1]] },
+  tri: { src: "images/undiz-2-tri.jpg", alt: "Panneau de tri", dot: [7.8, 2.6], hots: [[5, 31.3, 90, 5, "sel:33.1", "Prix croissants"], [5, 36.8, 90, 5, "sel:38.6", "Prix décroissants"], [5, 42.4, 90, 5, "sel:44.2", "Plus responsable"], [5, 47.9, 90, 5, "sel:49.7", "Meilleures ventes"], [37.4, 90.9, 58.6, 6.8, "resultat", "Appliquer"], [84, 11.5, 12, 6, "page", "Fermer"]] },
+  resultat: { src: "images/undiz-3-resultat.jpg", alt: "Liste triée", hots: [[3, 37.2, 18, 2.6, "tri", "Filtrer"]] }
+};
+buildProto(document.getElementById("undiz-proto"), UNDIZ, "page");
+
+// formation gamifiée : chaque module terminé rapporte 50 points ; à 150, un produit est offert
+(() => {
+  const game = document.getElementById("game"), pts = document.getElementById("pts"), bar = document.getElementById("gbar"), goal = document.getElementById("goal"), btn = document.getElementById("gbtn");
+  let score = 0;
+  const pop = n => { const el = game.querySelector(n); el.classList.add("pop"); setTimeout(() => el.classList.remove("pop"), 350); };
+  btn.addEventListener("click", e => {
+    e.stopPropagation();
+    if (score >= 150) { score = 0; game.classList.remove("won"); btn.textContent = "Terminer un module"; }
+    else { score += 50; pop(".n1"); setTimeout(() => pop(".n2"), 200); }
+    pts.textContent = score; bar.style.width = (score / 150 * 100) + "%";
+    if (score >= 150) { game.classList.add("won"); goal.textContent = "Bravo : un produit offert !"; btn.textContent = "Recommencer"; setTimeout(() => pop(".n3"), 400); }
+    else goal.textContent = score ? `Encore ${150 - score} pts avant un produit offert` : "Encore 150 pts avant un produit offert";
+  });
+  game.addEventListener("click", e => e.stopPropagation());
+})();
+
+// Cinematch : proto cliquable (écrans Figma)
+const proto = document.getElementById("proto");
+const swipeCard = proto.querySelector(".swipe-card"), toast = proto.querySelector(".toast");
+function show(n) {
+  proto.querySelectorAll(".scr").forEach(i => i.classList.toggle("on", i.dataset.s == n));
+  proto.querySelectorAll("[data-on]").forEach(h => h.classList.toggle("on", h.dataset.on == n));
+  swipeCard.style.transform = ""; swipeCard.style.opacity = 1;
+}
+function flingCard(dir) {
+  swipeCard.style.transition = "";
+  swipeCard.style.transform = `translateX(${dir * 320}px) rotate(${dir * 22}deg)`;
+  swipeCard.style.opacity = 0;
+  setTimeout(() => show(dir > 0 ? 4 : 2), 320);
+}
+proto.addEventListener("click", e => {
+  e.stopPropagation();
+  const h = e.target.closest(".hot"); if (!h) return;
+  h.classList.remove("pulse");
+  if (h.dataset.go) show(h.dataset.go);
+  if (h.dataset.fling) flingCard(+h.dataset.fling);
+  if (h.dataset.toast) { toast.classList.add("on"); setTimeout(() => { toast.classList.remove("on"); show(1); }, 1600); }
+});
+let drag = null;
+swipeCard.addEventListener("pointerdown", e => { drag = { x: e.clientX }; swipeCard.setPointerCapture(e.pointerId); swipeCard.style.transition = "none"; });
+swipeCard.addEventListener("pointermove", e => {
+  if (!drag) return;
+  const dx = e.clientX - drag.x;
+  swipeCard.style.transform = `translateX(${dx}px) rotate(${dx / 12}deg)`;
+});
+function endSwipe(e) {
+  if (!drag) return;
+  const dx = e.clientX - drag.x; drag = null;
+  if (Math.abs(dx) > 60) flingCard(Math.sign(dx));
+  else { swipeCard.style.transition = ""; swipeCard.style.transform = ""; }
+}
+swipeCard.addEventListener("pointerup", endSwipe);
+swipeCard.addEventListener("pointercancel", endSwipe);
+</script>
+</body>
+</html>
